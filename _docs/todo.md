@@ -35,10 +35,10 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Define Zod schemas in `lib/schemas/content.ts`
 - [x] Add `lib/content-service.ts` typed read/write helpers
 
-- [ ] Configure Auth.js (Google, Node runtime)
-- [ ] Store allowed-admins list (content block or small table)
-- [ ] Guard `/admin` and API writes server-side
-- [ ] Add access-denied UI with sign-out
+- [x] Configure Auth.js (Google, Node runtime)
+- [x] Store allowed-admins list (content block or small table)
+- [x] Guard `/admin` and API writes server-side
+- [x] Add access-denied UI with sign-out
 
 - [ ] Build `/admin` with edit-mode toggle (client)
 - [ ] Render editable fields via RHF + Zod per section
