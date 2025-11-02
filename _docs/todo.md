@@ -30,10 +30,10 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Document env setup in README
 
 ## Phase 02 — MVP (Usable Public Site with Admin Editing)
-- [ ] Create `content_blocks` table in Supabase (slug, data jsonb, updated_at)
-- [ ] Add `lib/supabase-server.ts` (server-only client)
-- [ ] Define Zod schemas in `lib/schemas/content.ts`
-- [ ] Add `lib/content-service.ts` typed read/write helpers
+- [x] Create `content_blocks` table in Supabase (slug, data jsonb, updated_at)
+- [x] Add `lib/supabase-server.ts` (server-only client)
+- [x] Define Zod schemas in `lib/schemas/content.ts`
+- [x] Add `lib/content-service.ts` typed read/write helpers
 
 - [ ] Configure Auth.js (Google, Node runtime)
 - [ ] Store allowed-admins list (content block or small table)

@@ -3,41 +3,55 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run supabase:ensure && npm run supabase:setup-env && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --cache --write ."
+    "format": "prettier --cache --write .",
+    "postbuild": "bash scripts/migrate-prod.sh",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:restart": "supabase stop && supabase start",
+    "supabase:link": "bash scripts/supabase-link.sh",
+    "supabase:push": "supabase db push",
+    "supabase:deploy": "supabase db push",
+    "supabase:migration-list": "supabase migration list",
+    "supabase:migration-new": "supabase migration new",
+    "supabase:migration-up": "supabase migration up",
+    "supabase:shell": "supabase db shell",
+    "supabase:query": "supabase db shell --command",
+    "supabase:generate-types": "supabase gen types typescript > lib/types/supabase.ts",
+    "supabase:ensure": "bash scripts/supabase-ensure.sh",
+    "supabase:setup-env": "bash scripts/supabase-setup-env.sh",
+    "supabase:studio": "open http://127.0.0.1:54323"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.78.0",
+    "@vercel/analytics": "^1",
+    "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "zod": "4.1.12"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
+    "eslint-config-prettier": "^9",
     "prettier": "^3",
-    "eslint-config-prettier": "^9"
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "supabase": "^2"
   },
   "resolutions": {
     "@types/react": "^19"
   },
   "overrides": {
     "@types/react": "^19"
-  },
-  "dependencies": {
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "next": "16.0.1",
-    "@vercel/analytics": "^1"
   }
 }
