@@ -45,7 +45,7 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Implement `PUT /api/content` save with server validation
 - [ ] Show success/error toasts and update timestamps
 
-- [ ] Render all sections as Server Components from `GET /api/content`
+- [x] Render all sections as Server Components from Supabase (no API)
 - [ ] Add outage/notice banner, webcam link, CTA in Hero
 - [ ] Implement responsive Ceník table (stacked or horizontal scroll)
 - [ ] Ensure external links open in new tabs (`rel="noopener noreferrer"`)
