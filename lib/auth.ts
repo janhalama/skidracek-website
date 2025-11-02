@@ -4,12 +4,17 @@
  */
 
 import { fetchContentBlock } from './content-service';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './auth-options';
 
 /*
   Returns current user email once Auth.js is configured. Throws until then.
 */
 export async function getCurrentUserEmail(): Promise<string> {
-  throw new Error('Authentication is not configured yet');
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email ?? null;
+  if (!email) throw new Error('Not authenticated');
+  return email;
 }
 
 /*
