@@ -40,9 +40,9 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Guard `/admin` and API writes server-side
 - [x] Add access-denied UI with sign-out
 
-- [ ] Build `/admin` with edit-mode toggle (client)
+- [x] Build `/admin` with edit-mode toggle (client)
 - [ ] Render editable fields via RHF + Zod per section
-- [ ] Implement `PUT /api/content` save with server validation
+- [x] Implement `PUT /api/content` save with server validation
 - [ ] Show success/error toasts and update timestamps
 
 - [ ] Render all sections as Server Components from `GET /api/content`
