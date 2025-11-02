@@ -4,7 +4,7 @@
   - PUT: 501 Not Implemented (writes will be added with admin auth)
 */
 
-import { fetchAllContentBlocks, fetchContentBlock } from '@/lib/content-service';
+import { fetchAllContentBlocks, fetchContentBlock, upsertContentBlock } from '@/lib/content-service';
 import { requireAdmin } from '@/lib/auth';
 
 export const runtime = 'nodejs';
@@ -51,10 +51,22 @@ export async function PUT(request: Request) {
     });
   }
 
-  return new Response(
-    JSON.stringify({ ok: false, error: 'Not Implemented', message: 'Save will be implemented next.' }),
-    { status: 501, headers: { 'Content-Type': 'application/json; charset=utf-8' } },
-  );
+  try {
+    const body = await request.json();
+    const slug = typeof body?.slug === 'string' ? body.slug : null;
+    if (!slug) throw new Error('Missing slug');
+    const data = body?.data;
+    const saved = await upsertContentBlock(slug, data);
+    return new Response(JSON.stringify({ ok: true, block: saved }), {
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Invalid request';
+    return new Response(JSON.stringify({ ok: false, error: message }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    });
+  }
 }
 
 
