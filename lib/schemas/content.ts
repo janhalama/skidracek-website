@@ -10,6 +10,7 @@ export const contentSlugs = [
   'hero',
   'news',
   'hours',
+  'params',
   'school',
   'pricing',
   'directions',
@@ -129,6 +130,16 @@ export const schemasBySlug: Record<ContentSlug, z.ZodTypeAny> = {
   hero: heroSchema,
   news: newsSchema,
   hours: hoursSchema,
+  params: z.object({
+    subtitle: z.string().min(1).optional(),
+    items: z.array(
+      z.object({
+        header: z.string().min(1),
+        value: z.string().min(1),
+        unit: z.string().min(1),
+      }),
+    ),
+  }),
   school: schoolSchema,
   pricing: pricingSchema,
   directions: directionsSchema,

@@ -18,6 +18,20 @@ insert into public.content_blocks (slug, data) values (
 ) on conflict (slug) do update set data = excluded.data;
 
 insert into public.content_blocks (slug, data) values (
+  'params',
+  '{
+    "subtitle": "Sjezdovka je ideální pro malé děti, začínající lyžaře a snowboardisty.",
+    "items": [
+      { "header": "Délka vleku", "value": "154", "unit": "metrů" },
+      { "header": "Převýšení", "value": "21", "unit": "metrů" },
+      { "header": "Nadmořská výška", "value": "550", "unit": "m. n. m." },
+      { "header": "Obtížnost", "value": "modrá", "unit": "dětská" },
+      { "header": "Kapacita", "value": "350", "unit": "osob/hod." }
+    ]
+  }'
+) on conflict (slug) do update set data = excluded.data;
+
+insert into public.content_blocks (slug, data) values (
   'school',
   '{
     "description": "Novinkou pro rodiny s dětmi je školička lyžování vedená zkušeným instruktorem a držitelem licence \"Instruktor základního lyžování\".",
