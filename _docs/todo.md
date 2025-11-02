@@ -47,13 +47,14 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 
 - [x] Render all sections as Server Components from Supabase (no API)
 - [ ] Add outage/notice banner, webcam link, CTA in Hero
+ - [x] Add outage/notice banner, webcam link, CTA in Hero
 - [ ] Implement responsive Ceník table (stacked or horizontal scroll)
 - [ ] Ensure external links open in new tabs (`rel="noopener noreferrer"`)
 
-- [ ] Implement `GET /api/weather` (provider call, `revalidate: 3600`)
-- [ ] Normalize provider data (units, last-updated)
-- [ ] Handle timeouts/errors with neutral fallback
-- [ ] Display temperature and snow status in Hero
+- [x] Implement `GET /api/weather` (provider call, `revalidate: 3600`)
+- [x] Normalize provider data (units, last-updated)
+- [x] Handle timeouts/errors with neutral fallback
+- [x] Display temperature and snow status in Hero
 
 - [ ] Set Vercel envs (NEXTAUTH, Google, Supabase service role)
 - [ ] Configure `images.remotePatterns` in `next.config.js`

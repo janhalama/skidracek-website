@@ -31,6 +31,12 @@ const heroSchema = z.object({
       text: z.string().max(300).default(''),
     })
     .default({ isVisible: false, text: '' }),
+  cta: z
+    .object({
+      label: z.string().min(1),
+      url: z.string().url(),
+    })
+    .optional(),
 });
 
 /*
