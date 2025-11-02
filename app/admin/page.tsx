@@ -7,8 +7,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 import { getCurrentUserEmail, isEmailAllowed } from '@/lib/auth';
-import dynamic from 'next/dynamic';
-const EditorClient = dynamic(() => import('./EditorClient'), { ssr: false });
+import EditorClient from './EditorClient';
 
 export default async function AdminPage() {
   let isAllowed = false;
