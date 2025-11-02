@@ -1,0 +1,40 @@
+/*
+  Global CSS variables for theme tokens.
+  Values calibrated from `_docs/theme-rules.md` and adjustable per branding.
+*/
+
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e5e7eb;
+
+  --color-primary: #0ea5e9;
+  --color-primary-foreground: #ffffff;
+  --color-accent: #38bdf8;
+  --color-accent-foreground: #0b1220;
+
+  --color-success: #22c55e;
+  --color-success-foreground: #052e12;
+  --color-warning: #f59e0b;
+  --color-warning-foreground: #291800;
+  --color-danger: #ef4444;
+  --color-danger-foreground: #300307;
+  --color-info: #3b82f6;
+  --color-info-foreground: #07142e;
+
+  --color-overlay: rgba(2, 6, 23, 0.6);
+  --color-ring: #0ea5e9;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu,
+    Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+html { color: var(--color-text); background: var(--color-bg); }
+

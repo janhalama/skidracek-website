@@ -42,3 +42,17 @@ Compact presentation website for a local ski lift.
 - `_docs/todo.md` (phased checklist)
 
 
+### Getting started
+
+- Install dependencies: `npm install`
+- Run dev server: `npm run dev` then open `http://localhost:3000`
+- Lint: `npm run lint` / auto-fix: `npm run lint:fix`
+- Format: `npm run format`
+- Typecheck: `npm run typecheck`
+
+### Environment
+
+- Copy `env.example` to `.env.local` and fill values
+- Required vars: `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+
+

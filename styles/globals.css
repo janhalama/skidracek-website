@@ -1,0 +1,47 @@
+/*
+  Global styles and Tailwind base layers.
+  Includes base typography and container utilities aligned to theme variables.
+*/
+
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-ring: var(--color-ring);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+  --color-danger: var(--color-danger);
+  --color-danger-foreground: var(--color-danger-foreground);
+  --color-info: var(--color-info);
+  --color-info-foreground: var(--color-info-foreground);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --font-sans: var(--font-sans);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); }
+
+  h1, h2, h3, h4, h5, h6 { color: var(--color-text); font-weight: 600; line-height: 1.25; }
+  p { line-height: 1.6; }
+  a { color: var(--color-primary); text-underline-offset: 2px; }
+  a:hover { text-decoration: underline; }
+}
+
+/* Container utility shortcut */
+.container-base { @apply container mx-auto px-4 sm:px-6 lg:px-8; }
+

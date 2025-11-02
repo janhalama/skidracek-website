@@ -5,29 +5,29 @@ Single source of truth for building SkiDráček iteratively. Tasks are grouped b
 Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.md`, `_docs/project-rules.md`, `_docs/ui-rules.md`, `_docs/theme-rules.md`, https://www.skidracek.cz/
 
 ## Phase 01 — Setup (Barebones Running App)
-- [ ] Create Next.js 14 App Router project with TypeScript and ESLint
-- [ ] Enable TypeScript strict mode and configure npm scripts
-- [ ] Add Prettier and .editorconfig
-- [ ] Add README with run/build instructions
+- [x] Create Next.js 14 App Router project with TypeScript and ESLint
+- [x] Enable TypeScript strict mode and configure npm scripts
+- [x] Add Prettier and .editorconfig
+- [x] Add README with run/build instructions
 
-- [ ] Install Tailwind and add `styles/globals.css` with base layers
-- [ ] Add `styles/variables.css` using tokens from theme rules
-- [ ] Extend `tailwind.config.ts` to map CSS variables
-- [ ] Add base typography and container utilities
+- [x] Install Tailwind and add `styles/globals.css` with base layers
+- [x] Add `styles/variables.css` using tokens from theme rules
+- [x] Extend `tailwind.config.ts` to map CSS variables
+- [x] Add base typography and container utilities
 
-- [ ] Scaffold `app/(public)/page.tsx` with all section anchors
-- [ ] Add `components/sections/*` placeholders (Hero, News, Hours, Params, School, Pricing, Directions, Contacts, Gallery, Footer)
-- [ ] Implement top navigation + hamburger shell
-- [ ] Add `app/(public)/loading.tsx` and `error.tsx`
+- [x] Scaffold `app/(public)/page.tsx` with all section anchors
+- [x] Add `components/sections/*` placeholders (Hero, News, Hours, Params, School, Pricing, Directions, Contacts, Gallery, Footer)
+- [x] Implement top navigation + hamburger shell
+- [x] Add `app/(public)/loading.tsx` and `error.tsx`
 
-- [ ] Stub `app/api/content/route.ts` (GET sample JSON, PUT 501)
-- [ ] Stub `app/api/weather/route.ts` (static sample, `revalidate: 3600`)
-- [ ] Ensure content route uses Node runtime and safe caching headers
+- [x] Stub `app/api/content/route.ts` (GET sample JSON, PUT 501)
+- [x] Stub `app/api/weather/route.ts` (static sample, `revalidate: 3600`)
+- [x] Ensure content route uses Node runtime and safe caching headers
 
 - [ ] Create Vercel project and enable Preview deployments
-- [ ] Add `.env.example` with NEXTAUTH_*, SUPABASE_* placeholders
+- [x] Add `.env.example` with NEXTAUTH_*, SUPABASE_* placeholders
 - [ ] Enable Vercel Web Analytics; verify build + preview URL
-- [ ] Document env setup in README
+- [x] Document env setup in README
 
 ## Phase 02 — MVP (Usable Public Site with Admin Editing)
 - [ ] Create `content_blocks` table in Supabase (slug, data jsonb, updated_at)
