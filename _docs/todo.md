@@ -24,9 +24,9 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Stub `app/api/weather/route.ts` (static sample, `revalidate: 3600`)
 - [x] Ensure content route uses Node runtime and safe caching headers
 
-- [ ] Create Vercel project and enable Preview deployments
+- [x] Create Vercel project and enable Preview deployments
 - [x] Add `.env.example` with NEXTAUTH_*, SUPABASE_* placeholders
-- [ ] Enable Vercel Web Analytics; verify build + preview URL
+- [x] Enable Vercel Web Analytics; verify build + preview URL
 - [x] Document env setup in README
 
 ## Phase 02 — MVP (Usable Public Site with Admin Editing)
