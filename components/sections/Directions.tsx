@@ -14,7 +14,7 @@ export default async function Directions() {
   const data = (block?.data as DirectionsData) || null;
   return (
     <section id="directions" className="container-base py-12">
-      <h2 className="text-2xl font-semibold">Jak k nám</h2>
+      <h2 className="text-2xl font-semibold">Kudy k Dráčkovi?</h2>
       {data ? (
         <div className="mt-3 space-y-3">
           <p className="whitespace-pre-wrap">{data.car}</p>
