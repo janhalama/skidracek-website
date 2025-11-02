@@ -6,6 +6,7 @@
 import { fetchContentBlock } from './content-service';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth-options';
+import { getSupabaseServerClient } from './supabase-server';
 
 /*
   Returns current user email once Auth.js is configured. Throws until then.
@@ -21,11 +22,20 @@ export async function getCurrentUserEmail(): Promise<string> {
   Resolves the admin allowlist from content or environment.
 */
 export async function resolveAllowedAdmins(): Promise<string[]> {
+  // Prefer DB table
+  const supabase = getSupabaseServerClient();
+  const { data: rows, error } = await supabase.from('admin_allowlist').select('email');
+  if (error) throw new Error(`Failed to read admin allowlist: ${error.message}`);
+  const emailsFromTable = (rows ?? []).map((r: any) => String(r.email).toLowerCase()).filter((e) => e.length > 0);
+  if (emailsFromTable.length > 0) return emailsFromTable;
+
+  // Fallback to content block (legacy) if present
   const block = await fetchContentBlock('admin-allowlist');
   if (block && block.data && Array.isArray((block.data as any).emails)) {
     return ((block.data as any).emails as string[]).map((e) => e.toLowerCase());
   }
 
+  // Fallback to env variable if configured
   const envList = process.env.ALLOWED_ADMINS;
   if (!envList) throw new Error('Admin allowlist not configured');
   return envList
