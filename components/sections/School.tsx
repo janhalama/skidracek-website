@@ -14,15 +14,19 @@ export default async function School() {
   return (
     <section id="school" className="container-base py-12">
       <h2 className="text-2xl font-semibold">Lyžařská škola</h2>
-      {data?.description ? <p className="mt-3 whitespace-pre-wrap">{data.description}</p> : null}
+      {data?.description ? (
+        <div className="mt-4 rounded-sm border border-border bg-surface p-4 shadow-sm">
+          <p className="whitespace-pre-wrap leading-relaxed">{data.description}</p>
+        </div>
+      ) : null}
       {data ? (
-        <div className="mt-4 grid gap-3">
-          <div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
             <h3 className="font-medium">Ceny</h3>
             <p className="text-sm">Individuální: {data.pricing.individual}</p>
             <p className="text-sm">Skupinová: {data.pricing.group}</p>
           </div>
-          <div>
+          <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
             <h3 className="font-medium">Instruktor</h3>
             <p className="text-sm">{data.instructor.name}</p>
             <p className="text-sm">{data.instructor.phone}</p>

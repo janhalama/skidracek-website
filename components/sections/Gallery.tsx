@@ -2,7 +2,7 @@
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="container-base py-12">
+    <section id="gallery" className="container-base py-12 scroll-mt-20">
       <h2 className="text-2xl font-semibold">Dráček v obrazech</h2>
       <div className="mt-6">
         <div className="relative w-full overflow-hidden rounded-md border border-border bg-surface">

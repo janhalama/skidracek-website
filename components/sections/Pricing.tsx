@@ -9,7 +9,7 @@ export default async function Pricing() {
   const block = await fetchContentBlock('pricing');
   const data = (block?.data as PricingData) || null;
   return (
-    <section id="pricing" className="container-base py-12">
+    <section id="pricing" className="container-base py-12 scroll-mt-20">
       <h2 className="text-2xl font-semibold">Ceník</h2>
       {data?.rows?.length ? (
         <>
@@ -34,9 +34,9 @@ export default async function Pricing() {
             <table className="min-w-[520px] w-full text-sm">
               <thead>
                 <tr className="text-left border-b border-border bg-surface/60">
-                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Doba</th>
-                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Dospělí</th>
-                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Děti</th>
+                  <th className="py-2 pr-3 font-medium text-(--color-text)">Doba</th>
+                  <th className="py-2 pr-3 font-medium text-(--color-text)">Dospělí</th>
+                  <th className="py-2 pr-3 font-medium text-(--color-text)">Děti</th>
                 </tr>
               </thead>
               <tbody>

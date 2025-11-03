@@ -12,7 +12,7 @@ export default async function Contacts() {
   const block = await fetchContentBlock('contacts');
   const data = (block?.data as ContactsData) || null;
   return (
-    <section id="contacts" className="container-base py-12">
+    <section id="contacts" className="container-base py-12 scroll-mt-20">
       <h2 className="text-2xl font-semibold">Kontakty</h2>
       {data ? (
         <div className="mt-4 grid gap-6 md:grid-cols-2">

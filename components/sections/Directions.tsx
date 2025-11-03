@@ -13,7 +13,7 @@ export default async function Directions() {
   const block = await fetchContentBlock('directions');
   const data = (block?.data as DirectionsData) || null;
   return (
-    <section id="directions" className="container-base py-12">
+    <section id="directions" className="container-base py-12 scroll-mt-20">
       <h2 className="text-2xl font-semibold">Kudy k Dráčkovi?</h2>
       {data ? (
         <div className="mt-4 space-y-3">

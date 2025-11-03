@@ -26,6 +26,7 @@ export type ContentSlug = (typeof contentSlugs)[number];
 const heroSchema = z.object({
   tagline: z.string().min(1),
   webcamUrl: z.string().url(),
+  backgroundImageUrl: z.string().url().optional(),
   noticeBanner: z
     .object({
       isVisible: z.boolean(),

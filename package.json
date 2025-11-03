@@ -12,6 +12,7 @@
     "format": "prettier --cache --write .",
     "postbuild": "bash scripts/migrate-prod.sh",
     "css:snapshot": "SITE_URL=https://www.skidracek.cz node scripts/snapshot-css.js",
+    "images:fetch": "SITE_URL=https://www.skidracek.cz node scripts/fetch-images.js",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "supabase:restart": "supabase stop && supabase start",

@@ -9,7 +9,7 @@ export default async function News() {
   const block = await fetchContentBlock('news');
   const data = (block?.data as NewsData) || null;
   return (
-    <section id="news" className="container-base py-12">
+    <section id="news" className="container-base py-12 scroll-mt-20">
       <h2 className="text-2xl font-semibold">Aktuální akce a novinky</h2>
       <div className="mt-4 space-y-4">
         {data?.items?.filter((i) => i.isVisible !== false).map((item) => (
