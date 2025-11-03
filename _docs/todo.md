@@ -46,8 +46,7 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [ ] Show success/error toasts and update timestamps
 
 - [x] Render all sections as Server Components from Supabase (no API)
-- [ ] Add outage/notice banner, webcam link, CTA in Hero
- - [x] Add outage/notice banner, webcam link, CTA in Hero
+- [x] Add outage/notice banner, webcam link, CTA in Hero
 - [ ] Implement responsive Ceník table (stacked or horizontal scroll)
 - [ ] Ensure external links open in new tabs (`rel="noopener noreferrer"`)
 
