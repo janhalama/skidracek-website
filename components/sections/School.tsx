@@ -24,7 +24,7 @@ export default async function School() {
     <section id="school" className="">
       <div className="bg-[#e4f5fc] py-4">
         <div className="container-base">
-          <h2 className="text-2xl font-semibold text-center text-primary">Lyžařská škola</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold text-center text-primary">Lyžařská škola</h2>
           {derivedSubtitle ? (
             <p className="mt-1 text-center text-primary">{derivedSubtitle}</p>
           ) : null}
@@ -48,31 +48,31 @@ export default async function School() {
                 {bodyParas.map((para, i) => (
                   <p key={i} className="whitespace-pre-wrap leading-relaxed text-(--color-text)">{para}</p>
                 ))}
-                <h3 className="font-medium text-primary">Pro koho je škola určena?</h3>
+                <h3 className="font-medium text-primary text-lg sm:text-xl">Pro koho je škola určena?</h3>
                 <p className="leading-relaxed text-(--color-text)">Pro děti a lyžaře začátečníky.</p>
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-primary">Výuka lyžování</h3>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Výuka lyžování</h3>
               <p className="leading-relaxed text-(--color-text)">Výuka lyžování je možná po předchozí telefonické nebo e-mailové domluvě s instruktorem.</p>
             </div>
             <div>
-              <h3 className="font-medium text-primary">Sjezdovka je vybavena potřebnými pomůckami pro výuku lyžování</h3>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Sjezdovka je vybavena potřebnými pomůckami pro výuku lyžování</h3>
               <p className="leading-relaxed text-(--color-text)">Průjezdné branky, dětský slalom apod.</p>
             </div>
             <div>
-              <h3 className="font-medium text-primary">Ceník lyžařské školy</h3>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Ceník lyžařské školy</h3>
               <p>individuální výuka (pouze 1 osoba): {data.pricing.individual || '500 Kč/osoba/50min'}</p>
               <p>skupinová výuka (2 a více osob): {data.pricing.group || '300 Kč/osoba/hodina'}</p>
             </div>
             <div>
-              <h3 className="font-medium text-primary">Instruktor</h3>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Instruktor</h3>
               <p>{data.instructor.name || 'Marek Matouš'}</p>
               <p>Tel.: {data.instructor.phone || '721 638 175'}</p>
               <p>E-mail: <a className="underline" href={`mailto:${data.instructor.email || 'skola@skidracek.cz'}`}>{data.instructor.email || 'skola@skidracek.cz'}</a></p>
             </div>
             <div>
-              <h3 className="font-medium text-primary">Objednávka</h3>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Objednávka</h3>
               <p>Výuka je možná po předchozí tel./e‑mail domluvě s instruktorem.</p>
             </div>
           </div>
