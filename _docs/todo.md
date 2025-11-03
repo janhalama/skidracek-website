@@ -47,8 +47,8 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 
 - [x] Render all sections as Server Components from Supabase (no API)
 - [x] Add outage/notice banner, webcam link, CTA in Hero
-- [ ] Implement responsive Ceník table (stacked or horizontal scroll)
-- [ ] Ensure external links open in new tabs (`rel="noopener noreferrer"`)
+- [x] Implement responsive Ceník table (stacked or horizontal scroll)
+- [x] Ensure external links open in new tabs (`rel="noopener noreferrer"`)
 
 - [x] Implement `GET /api/weather` (provider call, `revalidate: 3600`)
 - [x] Normalize provider data (units, last-updated)
