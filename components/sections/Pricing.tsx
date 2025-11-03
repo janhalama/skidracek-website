@@ -16,8 +16,8 @@ export default async function Pricing() {
           {/* Mobile: stacked cards */}
           <div className="mt-4 grid gap-3 sm:hidden">
             {data.rows.map((row, idx) => (
-              <div key={idx} className="rounded-md border border-border bg-surface p-4">
-                <div className="text-sm text-[color:var(--color-text-muted)]">{row.duration}</div>
+              <div key={idx} className="rounded-sm border border-border bg-surface p-4 shadow-sm">
+                <div className="text-sm text-(--color-text-muted)">{row.duration}</div>
                 <div className="mt-2 flex items-center justify-between">
                   <span className="text-sm">Dospělí</span>
                   <span className="font-medium">{row.adults}</span>
@@ -33,15 +33,15 @@ export default async function Pricing() {
           <div className="mt-4 overflow-x-auto hidden sm:block">
             <table className="min-w-[520px] w-full text-sm">
               <thead>
-                <tr className="text-left border-b border-border">
-                  <th className="py-2 pr-3">Doba</th>
-                  <th className="py-2 pr-3">Dospělí</th>
-                  <th className="py-2 pr-3">Děti</th>
+                <tr className="text-left border-b border-border bg-surface/60">
+                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Doba</th>
+                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Dospělí</th>
+                  <th className="py-2 pr-3 font-medium text-[color:var(--color-text)]">Děti</th>
                 </tr>
               </thead>
               <tbody>
                 {data.rows.map((row, idx) => (
-                  <tr key={idx} className="border-b border-border">
+                  <tr key={idx} className={"border-b border-border " + (idx % 2 === 1 ? 'bg-surface/40' : '')}>
                     <td className="py-2 pr-3">{row.duration}</td>
                     <td className="py-2 pr-3">{row.adults}</td>
                     <td className="py-2 pr-3">{row.kids}</td>

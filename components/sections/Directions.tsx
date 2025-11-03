@@ -16,11 +16,18 @@ export default async function Directions() {
     <section id="directions" className="container-base py-12">
       <h2 className="text-2xl font-semibold">Kudy k Dráčkovi?</h2>
       {data ? (
-        <div className="mt-3 space-y-3">
-          <p className="whitespace-pre-wrap">{data.car}</p>
+        <div className="mt-4 space-y-3">
+          <p className="whitespace-pre-wrap leading-relaxed">{data.car}</p>
           <p className="text-sm">GPS: {data.gps}</p>
           <p className="text-sm">
-            <a className="underline" href={data.mapyCzUrl} target="_blank" rel="noopener noreferrer">Mapa</a>
+            <a
+              className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
+              href={data.mapyCzUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Trasa na Mapy.cz
+            </a>
           </p>
           {data.buses?.length ? (
             <ul className="list-disc pl-5 text-sm">

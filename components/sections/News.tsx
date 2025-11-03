@@ -11,12 +11,14 @@ export default async function News() {
   return (
     <section id="news" className="container-base py-12">
       <h2 className="text-2xl font-semibold">Aktuální akce a novinky</h2>
-      <div className="mt-4 space-y-6">
+      <div className="mt-4 space-y-4">
         {data?.items?.filter((i) => i.isVisible !== false).map((item) => (
-          <article key={item.id} className="border-b border-border pb-4">
-            <h3 className="font-medium">{item.title}</h3>
-            <p className="text-sm text-[color:var(--color-text-muted)]">{new Date(item.dateIso).toLocaleDateString()}</p>
-            <p className="mt-2 whitespace-pre-wrap">{item.body}</p>
+          <article key={item.id} className="rounded-sm border border-border bg-surface p-4 shadow-sm">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-medium text-[color:var(--color-text)]">{item.title}</h3>
+              <p className="text-xs text-[color:var(--color-text-muted)]">{new Date(item.dateIso).toLocaleDateString()}</p>
+            </div>
+            <p className="mt-2 whitespace-pre-wrap leading-relaxed">{item.body}</p>
           </article>
         ))}
       </div>

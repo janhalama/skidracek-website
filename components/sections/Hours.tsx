@@ -10,7 +10,11 @@ export default async function Hours() {
   return (
     <section id="hours" className="container-base py-12">
       <h2 className="text-2xl font-semibold">Provozní doba</h2>
-      {data?.text ? <p className="mt-3 whitespace-pre-wrap">{data.text}</p> : null}
+      {data?.text ? (
+        <div className="mt-4 rounded-sm border border-border bg-surface p-4 shadow-sm">
+          <p className="whitespace-pre-wrap leading-relaxed">{data.text}</p>
+        </div>
+      ) : null}
     </section>
   );
 }

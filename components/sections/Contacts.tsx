@@ -16,7 +16,7 @@ export default async function Contacts() {
       <h2 className="text-2xl font-semibold">Kontakty</h2>
       {data ? (
         <div className="mt-4 grid gap-6 md:grid-cols-2">
-          <div>
+          <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
             <h3 className="font-medium">Správce</h3>
             <p className="text-sm">{data.manager.name}</p>
             <p className="text-sm">{data.manager.phone}</p>
@@ -24,7 +24,7 @@ export default async function Contacts() {
               <a className="underline" href={`mailto:${data.manager.email}`}>{data.manager.email}</a>
             </p>
           </div>
-          <div>
+          <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
             <h3 className="font-medium">Provozovatel</h3>
             <p className="text-sm">{data.operator.name}</p>
             <p className="text-sm whitespace-pre-wrap">{data.operator.address}</p>
@@ -34,7 +34,14 @@ export default async function Contacts() {
             </p>
           </div>
           <div className="md:col-span-2">
-            <a className="underline" href={data.wufooUrl} target="_blank" rel="noopener noreferrer">Kontaktní formulář</a>
+            <a
+              className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
+              href={data.wufooUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Napište nám (formulář)
+            </a>
           </div>
         </div>
       ) : null}

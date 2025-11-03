@@ -22,27 +22,44 @@ export default async function Hero() {
   return (
     <section id="hero" className="container-base py-12 sm:py-16">
       {data?.noticeBanner?.isVisible && data?.noticeBanner?.text ? (
-        <div className="mb-4 rounded-md border border-border bg-surface p-3">{data.noticeBanner.text}</div>
+        <div className="mb-4 rounded-sm border border-border bg-surface p-3 shadow-sm">{data.noticeBanner.text}</div>
       ) : null}
       <h1 className="text-3xl sm:text-4xl font-semibold">SkiDráček</h1>
       <p className="mt-2 text-[color:var(--color-text-muted)]">{data?.tagline ?? 'Místní vlek a školička v Alšovicích.'}</p>
       {weather && (weather.temperatureC !== null || weather.snowDepthCm !== null) ? (
-        <div className="mt-3 text-sm text-[color:var(--color-text-muted)]">
-          {weather.temperatureC !== null ? <span>Aktuálně: {Math.round(weather.temperatureC)}°C</span> : null}
-          {weather.temperatureC !== null && weather.snowDepthCm !== null ? <span> · </span> : null}
-          {weather.snowDepthCm !== null ? <span>Sníh: {Math.round(weather.snowDepthCm)} cm</span> : null}
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-[color:var(--color-text)]">
+          {weather.temperatureC !== null ? (
+            <span className="inline-flex items-center rounded-sm bg-surface px-2 py-0.5">
+              Teplota: {Math.round(weather.temperatureC)}°C
+            </span>
+          ) : null}
+          {weather.snowDepthCm !== null ? (
+            <span className="inline-flex items-center rounded-sm bg-surface px-2 py-0.5">
+              Sníh: {Math.round(weather.snowDepthCm)} cm
+            </span>
+          ) : null}
         </div>
       ) : null}
       {data?.webcamUrl ? (
         <p className="mt-3">
-          <a href={data.webcamUrl} target="_blank" rel="noopener noreferrer" className="underline">
+          <a
+            href={data.webcamUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-sm bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:opacity-90"
+          >
             Webkamera
           </a>
         </p>
       ) : null}
       {data?.cta ? (
         <p className="mt-3">
-          <a href={data.cta.url} target="_blank" rel="noopener noreferrer" className="underline">
+          <a
+            href={data.cta.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-sm border border-primary px-4 py-2 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
+          >
             {data.cta.label}
           </a>
         </p>

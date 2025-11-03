@@ -26,7 +26,7 @@ export default function Gallery() {
         </p>
         <p className="mt-2">
           <a
-            className="underline"
+            className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
             href="https://www.flickr.com/photos/130261563@N08/sets"
             target="_blank"
             rel="noopener noreferrer"

@@ -61,6 +61,23 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Confirm Vercel Analytics events appear
 
 ## Phase 03 — Enhancements (UX, Performance, Maintainability)
+- [x] Snapshot current site's CSS and computed styles for reference
+- [x] Map typography/spacing/colors/borders/shadows to tokens in `styles/variables.css`
+- [x] Update `tailwind.config.ts` if new tokens or scales are needed
+- [x] Convert `components/navigation/TopNav.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Hero.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/News.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Hours.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Params.tsx` styles to Tailwind to match original
+- [ ] Convert `components/sections/School.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Pricing.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Directions.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Contacts.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Gallery.tsx` styles to Tailwind to match original
+- [x] Convert `components/sections/Footer.tsx` styles to Tailwind to match original
+- [ ] Verify visual parity across breakpoints; adjust line-height, gaps, and container widths
+- [ ] Compare before/after screenshots; iterate until acceptable visual match
+- [ ] Remove placeholder styles and unused tokens after parity is achieved
 - [ ] Highlight editable regions (subtle outlines + labels)
 - [ ] Add per-field validation messages and helper text
 - [ ] Confirm dialog for destructive edits/clears

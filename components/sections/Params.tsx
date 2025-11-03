@@ -17,10 +17,10 @@ export default async function Params() {
       {data?.items?.length ? (
         <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {data.items.map((p, idx) => (
-            <div key={idx} className="rounded-md border border-border bg-surface p-4 text-center">
-              <div className="text-sm text-[color:var(--color-text-muted)]">{p.header}</div>
-              <div className="text-3xl font-semibold">{p.value}</div>
-              <div className="text-xs uppercase tracking-wide text-[color:var(--color-text-muted)]">{p.unit}</div>
+            <div key={idx} className="rounded-sm border border-border bg-surface p-4 text-center shadow-sm">
+              <div className="text-xs uppercase tracking-wide text-[color:var(--color-text-muted)]">{p.header}</div>
+              <div className="mt-1 text-3xl font-semibold text-[color:var(--color-text)]">{p.value}</div>
+              <div className="text-[10px] uppercase tracking-wider text-[color:var(--color-text-muted)]">{p.unit}</div>
             </div>
           ))}
         </div>
