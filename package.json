@@ -14,6 +14,7 @@
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "supabase:restart": "supabase stop && supabase start",
+    "supabase:reset": "supabase db reset",
     "supabase:link": "bash scripts/supabase-link.sh",
     "supabase:push": "supabase db push",
     "supabase:deploy": "supabase db push",
