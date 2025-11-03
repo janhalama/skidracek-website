@@ -8,13 +8,17 @@ export default async function Hours() {
   const block = await fetchContentBlock('hours');
   const data = (block?.data as HoursData) || null;
   return (
-    <section id="hours" className="container-base py-12 scroll-mt-20">
-      <h2 className="text-2xl font-semibold">Provozní doba</h2>
-      {data?.text ? (
-        <div className="mt-4 rounded-sm border border-border bg-surface p-4 shadow-sm">
-          <p className="whitespace-pre-wrap leading-relaxed">{data.text}</p>
+    <section id="hours" className="scroll-mt-20">
+      <div className="bg-[#e4f5fc] py-4">
+        <div className="container-base">
+          <h2 className="text-2xl font-semibold text-center text-primary">Provozní doba</h2>
         </div>
-      ) : null}
+      </div>
+      <div className="container-base py-8 bg-white">
+        {data?.text ? (
+          <p className="whitespace-pre-wrap leading-relaxed text-center text-primary">{data.text}</p>
+        ) : null}
+      </div>
     </section>
   );
 }

@@ -9,10 +9,15 @@ export default async function Pricing() {
   const block = await fetchContentBlock('pricing');
   const data = (block?.data as PricingData) || null;
   return (
-    <section id="pricing" className="container-base py-12 scroll-mt-20">
-      <h2 className="text-2xl font-semibold">Ceník</h2>
-      {data?.rows?.length ? (
-        <>
+    <section id="pricing" className="scroll-mt-20">
+      <div className="bg-[#e4f5fc] py-4">
+        <div className="container-base">
+          <h2 className="text-2xl font-semibold text-center text-primary">Ceník</h2>
+        </div>
+      </div>
+      <div className="container-base py-8 bg-white">
+        {data?.rows?.length ? (
+          <>
           {/* Mobile: stacked cards */}
           <div className="mt-4 grid gap-3 sm:hidden">
             {data.rows.map((row, idx) => (
@@ -50,8 +55,9 @@ export default async function Pricing() {
               </tbody>
             </table>
           </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
+      </div>
     </section>
   );
 }

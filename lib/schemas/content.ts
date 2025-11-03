@@ -67,6 +67,7 @@ const hoursSchema = z.object({
   Schema for school info including pricing and instructor contact.
 */
 const schoolSchema = z.object({
+  subtitle: z.string().min(1).optional(),
   description: z.string().min(1),
   pricing: z.object({
     individual: z.string().min(1),
