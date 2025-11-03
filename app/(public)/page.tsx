@@ -4,6 +4,8 @@
 */
 
 import TopNav from '@/components/navigation/TopNav';
+
+export const revalidate = 300;
 import Hero from '@/components/sections/Hero';
 import News from '@/components/sections/News';
 import Hours from '@/components/sections/Hours';

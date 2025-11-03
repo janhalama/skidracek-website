@@ -55,10 +55,10 @@ Reference: `_docs/project-overview.md`, `_docs/user-flow.md`, `_docs/tech-stack.
 - [x] Handle timeouts/errors with neutral fallback
 - [x] Display temperature and snow status in Hero
 
-- [ ] Set Vercel envs (NEXTAUTH, Google, Supabase service role)
-- [ ] Configure `images.remotePatterns` in `next.config.js`
-- [ ] Verify preview + production deploys and caching behavior
-- [ ] Confirm Vercel Analytics events appear
+- [x] Set Vercel envs (NEXTAUTH, Google, Supabase service role)
+- [x] Configure `images.remotePatterns` in `next.config.js`
+- [x] Verify preview + production deploys and caching behavior
+- [x] Confirm Vercel Analytics events appear
 
 ## Phase 03 — Enhancements (UX, Performance, Maintainability)
 - [ ] Highlight editable regions (subtle outlines + labels)
