@@ -14,7 +14,6 @@ export const authOptions: NextAuthOptions = {
   ],
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
-  trustHost: true,
   callbacks: {
     async redirect({ url, baseUrl }) {
       try {
