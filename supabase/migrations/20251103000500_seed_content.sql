@@ -55,7 +55,7 @@ insert into public.content_blocks (slug, data) values (
   'directions',
   '{
     "car": "U Dráčka jsou k dispozici dvě malá parkoviště pro 12 automobilů. Parkování pro lyžaře je zdarma.",
-    "gps": "50.674512, 15.235718",
+    "gps": "50.674628481017855, 15.235615571634401",
     "mapyCzUrl": "http://www.mapy.cz/zakladni?planovani-trasy&x=15.2051588&y=50.7017564&z=12&rc=9iHptx1d4C9iRc2x1ODX&rl=obec%20Jablonec%20nad%20Nisou%2C%20okres%20Jablonec%20nad%20Nisou%2C%20kraj%20Libereck%C3%BD&rl=Ly%C5%BEa%C5%99sk%C3%BD%20vlek%20Dr%C3%A1%C4%8Dek%2C%20P%C4%9Bn%C4%8D%C3%ADn%20468%2021%20%20P%C4%9Bn%C4%8D%C3%ADn%2C%20Al%C5%A1ovice&rp=%7B%22criterion%22%3A%22fast%22%7D&ri=0",
     "buses": [
       { "label": "Jízdní řády z Jablonce n. N.", "url": "http://jizdnirady.idnes.cz/autobusy/spojeni/?f=Jablonec+nad+Nisou&t=Al%C5%A1ovice%2fP%C4%9Bn%C4%8D%C3%ADn+%5bJN%5d&fc=1&tc=2&submit=true" },
