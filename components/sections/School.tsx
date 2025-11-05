@@ -24,7 +24,7 @@ export default async function School() {
     <section id="school" className="">
       <div className="bg-[#e4f5fc] py-4">
         <div className="container-base">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-center text-primary">Lyžařská škola</h2>
+          <h2 className="text-2xl font-semibold text-center text-primary">Lyžařská škola</h2>
           {derivedSubtitle ? (
             <p className="mt-1 text-center text-primary">{derivedSubtitle}</p>
           ) : null}
