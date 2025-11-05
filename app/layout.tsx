@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
 import "../styles/variables.css";
 import "../styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
-const openSans = Open_Sans({ subsets: ["latin"], weight: ["400","700"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs">
-      <body className={`${openSans.className} antialiased`}>
+      <body className={`antialiased`}>
         {children}
         <Analytics />
       </body>
