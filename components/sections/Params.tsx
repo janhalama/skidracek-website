@@ -43,7 +43,7 @@ export default async function Params() {
           aria-label="Schématická mapka vleku"
           role="img"
         >
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 sm:h-16 bg-gradient-to-b from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 sm:h-24 bg-gradient-to-b from-white to-transparent" />
         </div>
       </div>
       {/* Parameters footer gradient strip (visual separator like original) */}
