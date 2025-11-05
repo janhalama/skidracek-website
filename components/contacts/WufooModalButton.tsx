@@ -9,6 +9,7 @@ import { Modal } from "@/components/ui/Modal";
 */
 export default function WufooModalButton({ url, label = "Napište nám (formulář)" }: { url: string; label?: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const containerId = useMemo(function computeContainerId() {
     try {
       const parsed = new URL(url);
@@ -43,6 +44,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
       // Display again if already initialized
       try {
         (window as any)[embedOptions.formHash].display();
+        setIsLoading(false);
       } catch {}
       return;
     }
@@ -71,6 +73,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
         instance.display();
         (window as any)[embedOptions.formHash] = instance;
         scriptLoadedRef.current = true;
+        setIsLoading(false);
       } catch {}
     };
 
@@ -89,7 +92,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
       <button
         type="button"
         className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-surface"
-        onClick={() => setIsOpen(true)}
+        onClick={() => { setIsOpen(true); setIsLoading(true); }}
       >
         <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
           <path d="M2.94 6.34A2 2 0 014.33 6h11.34a2 2 0 011.39.34l-7.06 5.3a1 1 0 01-1.2 0L2.94 6.34z" />
@@ -99,8 +102,21 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
       </button>
 
       <Modal isOpen={isOpen} onClose={onClose} title="Kontaktujte nás">
-        <div className="p-4">
-          <div id={containerId}>Načítám formulář…</div>
+        <div className="relative p-4">
+          <div className="relative min-h-[600px]">
+            {isLoading ? (
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <div className="inline-flex items-center rounded-sm bg-white/90 px-3 py-1.5 text-sm text-primary">
+                  <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" className="opacity-20" />
+                    <path d="M12 2a10 10 0 00-9 5.5" className="opacity-80" />
+                  </svg>
+                  Načítám formulář…
+                </div>
+              </div>
+            ) : null}
+            <div id={containerId} />
+          </div>
         </div>
       </Modal>
     </>
