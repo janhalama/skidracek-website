@@ -25,6 +25,7 @@ export default function PublicPage() {
       <main>
         <Hero />
         <News />
+        <FloatingWebcam />
         <Hours />
         <Params />
         <School />
@@ -34,7 +35,6 @@ export default function PublicPage() {
         <Gallery />
       </main>
       <Footer />
-      <FloatingWebcam />
     </>
   );
 }
