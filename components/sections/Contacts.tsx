@@ -40,11 +40,15 @@ export default async function Contacts() {
             </div>
             <div className="md:col-span-2">
               <a
-                className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
+                className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-surface"
                 href={data.wufooUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2.94 6.34A2 2 0 014.33 6h11.34a2 2 0 011.39.34l-7.06 5.3a1 1 0 01-1.2 0L2.94 6.34z" />
+                  <path d="M18 8.12V14a2 2 0 01-2 2H4a2 2 0 01-2-2V8.12l6.47 4.86a3 3 0 003.06 0L18 8.12z" />
+                </svg>
                 Napište nám (formulář)
               </a>
             </div>

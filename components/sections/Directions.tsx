@@ -43,8 +43,12 @@ export default async function Directions() {
                       href={openGoogleUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-sm bg-primary px-3 py-1 text-sm font-medium text-primary-foreground"
+                      className="inline-flex items-center rounded-sm bg-primary px-3 py-1 text-sm font-medium text-primary-foreground"
                     >
+                      <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13 7h-2a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V9.414l-5.293 5.293a1 1 0 01-1.414-1.414L13 7z" />
+                        <path d="M5 4a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V6h3a1 1 0 100-2H5z" />
+                      </svg>
                       Otevřít mapu
                     </a>
                   </div>
@@ -66,11 +70,14 @@ export default async function Directions() {
                 </div>
                 <p>
                   <a
-                    className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary)] hover:bg-surface"
+                    className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-surface"
                     href={data.mapyCzUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 00-1.176 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81H6.93a1 1 0 00.95-.69l1.07-3.292z" />
+                    </svg>
                     Naplánovat trasu (mapy.cz)
                   </a>
                 </p>
