@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer id="footer" className="mt-12 border-t border-border bg-surface/70">
+    <footer id="footer" className="mt-0 border-t border-border bg-surface/70">
       <div className="container-base py-6 text-sm text-[color:var(--color-text-muted)]">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
