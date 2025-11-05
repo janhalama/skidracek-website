@@ -20,7 +20,7 @@ export default async function Contacts() {
       </div>
       <div className="container-base py-8 bg-white text-base">
         {data ? (
-          <div className="grid gap-4 md:grid-cols-2 max-w-[720px] mx-auto">
+          <div className="grid gap-4 md:grid-cols-2 max-w-[720px] mx-auto md:translate-x-4">
             <div>
               <h3 className="font-medium text-primary text-lg sm:text-xl">Správce</h3>
               <p className="leading-relaxed text-(--color-text)">{data.manager.name}</p>

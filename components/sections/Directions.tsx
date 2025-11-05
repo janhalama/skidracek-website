@@ -57,7 +57,7 @@ export default async function Directions() {
             );
           })()}
           <div className="container-base py-8 bg-white">
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3 max-w-[900px] mx-auto md:translate-x-4">
               <div className="space-y-2">
                 <h3 className="text-lg font-medium text-primary">Autem</h3>
                 {data.car ? <p className="text-sm">{data.car}</p> : null}
