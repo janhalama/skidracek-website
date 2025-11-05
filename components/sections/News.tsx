@@ -13,9 +13,11 @@ export default async function News() {
     <section id="news" className="py-12 scroll-mt-20 bg-primary">
       <div className="container-base">
         <h2 className="text-2xl font-semibold text-center text-primary-foreground">Aktuální akce a novinky</h2>
-        <div className="mt-4 space-y-4">
-          {items.length ? (
-            items.map((item) => (
+      </div>
+      {items.length ? (
+        <div className="container-base">
+          <div className="mt-4 space-y-4">
+            {items.map((item) => (
               <article key={item.id} className="rounded-sm border border-border bg-surface p-4 shadow-sm">
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="font-medium text-[color:var(--color-text)]">{item.title}</h3>
@@ -23,14 +25,16 @@ export default async function News() {
                 </div>
                 <p className="mt-2 whitespace-pre-wrap leading-relaxed">{item.body}</p>
               </article>
-            ))
-          ) : (
-            <div className="rounded-sm border border-border bg-surface p-4 text-center text-[color:var(--color-text-muted)]">
-              Momentálně nejsou naplánovány žádné akce.
-            </div>
-          )}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full bg-white">
+          <div className="container-base py-3">
+            <p className="text-primary text-center text-sm sm:text-base">Momentálně nejsou naplánovány žádné akce.</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
