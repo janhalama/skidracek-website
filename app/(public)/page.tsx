@@ -16,6 +16,7 @@ import Directions from '@/components/sections/Directions';
 import Contacts from '@/components/sections/Contacts';
 import Gallery from '@/components/sections/Gallery';
 import Footer from '@/components/sections/Footer';
+import FloatingWebcam from '@/components/FloatingWebcam';
 
 export default function PublicPage() {
   return (
@@ -33,6 +34,7 @@ export default function PublicPage() {
         <Gallery />
       </main>
       <Footer />
+      <FloatingWebcam />
     </>
   );
 }
