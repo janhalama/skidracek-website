@@ -9,7 +9,7 @@ export default function Gallery() {
           <h2 className="text-2xl font-semibold text-center text-primary">Dráček v obrazech</h2>
           <p className="mt-1 text-center text-primary text-sm">Aktuální fotky najdete na našem Flickr profilu.</p>
           <a
-            className="hidden sm:inline-flex items-center rounded-sm bg-primary px-3 py-1 text-sm font-medium text-primary-foreground absolute right-0 top-1/2 -translate-y-1/2"
+            className="mt-2 inline-flex items-center rounded-sm bg-primary px-3 py-1 text-sm font-medium text-primary-foreground mx-auto sm:mx-0 sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2"
             href="https://www.flickr.com/photos/130261563@N08/sets"
             target="_blank"
             rel="noopener noreferrer"
