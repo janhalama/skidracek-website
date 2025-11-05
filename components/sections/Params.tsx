@@ -1,6 +1,7 @@
 /* Renders Lift parameters from Supabase */
 
 import { fetchContentBlock } from '@/lib/content-service';
+import Image from 'next/image';
 
 type ParamsData = {
   subtitle?: string;
@@ -33,6 +34,19 @@ export default async function Params() {
               ))}
             </div>
           ) : null}
+        </div>
+      </div>
+      {/* Image below parameters, as on the original site */}
+      <div className="w-full bg-white">
+        <div className="container-base py-4">
+          <Image
+            src="/images/original/gallery.jpg"
+            alt="Schématická mapka vleku"
+            width={1200}
+            height={675}
+            className="w-full h-auto rounded-sm border border-border shadow-sm"
+            priority={false}
+          />
         </div>
       </div>
       {/* Parameters footer gradient strip (visual separator like original) */}
