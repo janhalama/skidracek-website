@@ -22,15 +22,15 @@ export default function Footer() {
             </a>
             <a
               className="inline-flex items-center rounded-sm border border-transparent px-2 py-1 hover:bg-white/40"
-              href="https://twitter.com/skidracek"
+              href="https://x.com/skidracek"
               target="_blank"
               rel="noopener noreferrer"
-              title="Twitter"
-              aria-label="Twitter"
+              title="X (dříve Twitter)"
+              aria-label="X"
             >
               <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24">
                 <rect x="2" y="2" width="20" height="20" rx="2" ry="2" fill="none" stroke="currentColor" />
-                <path d="M22 7.5c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1-1.6-1.7-4.5-.7-4.5 1.8 0 .3 0 .5.1.8-3.7-.2-7-2-9.2-4.9-.4.7-.6 1.4-.6 2.2 0 1.5.8 2.8 2 3.6-.6 0-1.2-.2-1.7-.5 0 2.1 1.5 3.8 3.5 4.2-.4.1-.8.1-1.2.1-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.2-1.6 1.3-3.6 2.1-5.8 2.1H4c2.1 1.3 4.6 2.1 7.2 2.1 8.6 0 13.3-7.2 13.3-13.3v-.6c.9-.7 1.6-1.4 2.2-2.3z" fill="currentColor" />
+                <path d="M6 4h3l3 4 3-4h3l-4.5 6L18 20h-3l-3-4-3 4H6l4.5-6L6 4z" fill="currentColor" />
               </svg>
             </a>
             <a
@@ -50,8 +50,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-2 text-center text-xs">
-          Powered by <a className="underline" href="http://marekbrumlich.cz" target="_blank" rel="noopener noreferrer">Marek Brumlich</a>,&nbsp;
-          <a className="underline" href="http://janhalama.cz" target="_blank" rel="noopener noreferrer">Jan Halama</a>
+          Powered by <a href="http://marekbrumlich.cz" target="_blank" rel="noopener noreferrer">Marek Brumlich</a>,&nbsp;
+          <a href="http://janhalama.cz" target="_blank" rel="noopener noreferrer">Jan Halama</a>
         </div>
       </div>
     </footer>
