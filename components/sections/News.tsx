@@ -12,7 +12,7 @@ export default async function News() {
   return (
     <section id="news" className="py-12 scroll-mt-20 bg-primary">
       <div className="container-base">
-        <h2 className="text-2xl font-semibold text-center text-primary-foreground">Aktuální akce a novinky</h2>
+        <h2 className="text-2xl font-semibold text-center text-primary-foreground mb-0">Aktuální akce a novinky</h2>
       </div>
       {items.length ? (
         <div className="container-base">
