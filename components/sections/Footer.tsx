@@ -15,9 +15,9 @@ export default function Footer() {
               title="Facebook"
               aria-label="Facebook"
             >
-              <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24">
                 <rect x="2" y="2" width="20" height="20" rx="2" ry="2" fill="none" stroke="currentColor" />
-                <path d="M14 8h2V5h-2c-2.21 0-4 1.79-4 4v2H8v3h2v5h3v-5h2.1l.4-3H13V9c0-.55.45-1 1-1z" />
+                <path d="M14 8h2V5h-2c-2.21 0-4 1.79-4 4v2H8v3h2v5h3v-5h2.1l.4-3H13V9c0-.55.45-1 1-1z" fill="currentColor" />
               </svg>
             </a>
             <a
@@ -28,9 +28,9 @@ export default function Footer() {
               title="Twitter"
               aria-label="Twitter"
             >
-              <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24">
                 <rect x="2" y="2" width="20" height="20" rx="2" ry="2" fill="none" stroke="currentColor" />
-                <path d="M22 7.5c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1-1.6-1.7-4.5-.7-4.5 1.8 0 .3 0 .5.1.8-3.7-.2-7-2-9.2-4.9-.4.7-.6 1.4-.6 2.2 0 1.5.8 2.8 2 3.6-.6 0-1.2-.2-1.7-.5 0 2.1 1.5 3.8 3.5 4.2-.4.1-.8.1-1.2.1-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.2-1.6 1.3-3.6 2.1-5.8 2.1H4c2.1 1.3 4.6 2.1 7.2 2.1 8.6 0 13.3-7.2 13.3-13.3v-.6c.9-.7 1.6-1.4 2.2-2.3z" />
+                <path d="M22 7.5c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1-1.6-1.7-4.5-.7-4.5 1.8 0 .3 0 .5.1.8-3.7-.2-7-2-9.2-4.9-.4.7-.6 1.4-.6 2.2 0 1.5.8 2.8 2 3.6-.6 0-1.2-.2-1.7-.5 0 2.1 1.5 3.8 3.5 4.2-.4.1-.8.1-1.2.1-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.2-1.6 1.3-3.6 2.1-5.8 2.1H4c2.1 1.3 4.6 2.1 7.2 2.1 8.6 0 13.3-7.2 13.3-13.3v-.6c.9-.7 1.6-1.4 2.2-2.3z" fill="currentColor" />
               </svg>
             </a>
             <a
@@ -41,9 +41,10 @@ export default function Footer() {
               title="Flickr"
               aria-label="Flickr"
             >
-              <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24">
-                <circle cx="9" cy="12" r="4" fill="#0063dc" />
-                <circle cx="15" cy="12" r="4" fill="#ff0084" />
+              <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="2" ry="2" fill="none" stroke="currentColor" />
+                <circle cx="10" cy="12" r="2.5" fill="currentColor" />
+                <circle cx="14" cy="12" r="2.5" fill="currentColor" />
               </svg>
             </a>
           </div>
