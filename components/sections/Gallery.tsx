@@ -17,6 +17,10 @@ export default function Gallery() {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+              <circle cx="9" cy="12" r="4" fill="#0063dc" />
+              <circle cx="15" cy="12" r="4" fill="#ff0084" />
+            </svg>
             Fotky na Flickru
           </a>
         </p>
