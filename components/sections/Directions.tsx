@@ -75,8 +75,10 @@ export default async function Directions() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 00-1.176 0l-2.802 2.036c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.88 8.72c-.783-.57-.38-1.81.588-1.81H6.93a1 1 0 00.95-.69l1.07-3.292z" />
+                    <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M5 10l1.2-3.2A2 2 0 018.2 6h7.6a2 2 0 011.9 1.8L19 10v4h-1a1 1 0 01-1-1v-1H7v1a1 1 0 01-1 1H5v-4z" />
+                      <circle cx="8" cy="16" r="1.5" />
+                      <circle cx="16" cy="16" r="1.5" />
                     </svg>
                     Naplánovat trasu (mapy.cz)
                   </a>
