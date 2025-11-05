@@ -35,6 +35,10 @@ export default async function Params() {
           ) : null}
         </div>
       </div>
+      {/* Parameters footer gradient strip (visual separator like original) */}
+      <div className="w-full">
+        <div className="h-3 bg-gradient-to-b from-white to-[#e4f5fc]" />
+      </div>
     </section>
   );
 }
