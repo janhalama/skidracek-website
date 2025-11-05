@@ -4,8 +4,7 @@ export default function Footer() {
   return (
     <footer id="footer" className="mt-12 border-t border-border bg-surface/70">
       <div className="container-base py-6 text-sm text-[color:var(--color-text-muted)]">
-        <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-          <div>© {new Date().getFullYear()} SkiDráček</div>
+        <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a
               className="inline-flex items-center rounded-sm border border-transparent px-2 py-1 hover:bg-white/40"
@@ -48,10 +47,11 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-        </div>
-        <div className="mt-2 text-center text-xs">
-          Powered by <a href="http://marekbrumlich.cz" target="_blank" rel="noopener noreferrer">Marek Brumlich</a>,&nbsp;
-          <a href="http://janhalama.cz" target="_blank" rel="noopener noreferrer">Jan Halama</a>
+          <div className="whitespace-nowrap">© {new Date().getFullYear()} SkiDráček</div>
+          <div className="whitespace-nowrap text-xs">
+            Powered by <a href="http://marekbrumlich.cz" target="_blank" rel="noopener noreferrer">Marek Brumlich</a>,&nbsp;
+            <a href="http://janhalama.cz" target="_blank" rel="noopener noreferrer">Jan Halama</a>
+          </div>
         </div>
       </div>
     </footer>
