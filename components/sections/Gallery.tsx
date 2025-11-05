@@ -1,4 +1,5 @@
-/* Static Gallery section with image placeholder and links (no CMS content) */
+/* Static Gallery section with representative image and Flickr link */
+import Image from 'next/image';
 
 export default function Gallery() {
   return (
@@ -9,6 +10,16 @@ export default function Gallery() {
         </div>
       </div>
       <div className="container-base py-8 bg-white">
+        <div className="mb-4">
+          <Image
+            src="/images/original/gallery.jpg"
+            alt="Dráček v obrazech"
+            width={1200}
+            height={675}
+            className="w-full h-auto rounded-sm border border-border shadow-sm"
+            priority={false}
+          />
+        </div>
         <p className="text-sm text-(--color-text)">Aktuální fotky najdete na našem Flickr profilu.</p>
         <p className="mt-2">
           <a
