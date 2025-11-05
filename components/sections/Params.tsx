@@ -38,13 +38,12 @@ export default async function Params() {
       </div>
       {/* Image below parameters, as on the original site */}
       <div className="w-full bg-white">
-        <div className="container-base py-4">
-          <div
-            className="w-full h-64 rounded-sm border border-border shadow-sm bg-white bg-no-repeat bg-bottom"
-            style={{ backgroundImage: 'url(/images/original/maskarak.jpg)' }}
-            aria-label="Schématická mapka vleku"
-            role="img"
-          />
+        <div className="relative w-full h-[28rem] sm:h-[36rem] bg-white bg-no-repeat bg-bottom"
+          style={{ backgroundImage: 'url(/images/original/maskarak.jpg)' }}
+          aria-label="Schématická mapka vleku"
+          role="img"
+        >
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-12 sm:h-16 bg-gradient-to-b from-white to-transparent" />
         </div>
       </div>
       {/* Parameters footer gradient strip (visual separator like original) */}
