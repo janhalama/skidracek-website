@@ -39,7 +39,7 @@
   h1, h2, h3, h4, h5, h6 { color: var(--color-text); font-weight: 600; line-height: 1.25; }
   p { line-height: 1.6; }
   a { color: var(--color-primary); text-underline-offset: 2px; }
-  a:hover { text-decoration: underline; }
+  a:hover { text-decoration: none; }
 }
 
 /* Container utility shortcut */
