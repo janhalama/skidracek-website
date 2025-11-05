@@ -34,6 +34,7 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: smooth; }
   body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); }
 
   h1, h2, h3, h4, h5, h6 { color: var(--color-text); font-weight: 600; line-height: 1.25; }
