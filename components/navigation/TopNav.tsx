@@ -15,6 +15,17 @@ export default function TopNav() {
     setIsOpen(prev => !prev);
   }
 
+  function handleNavClick(e: React.MouseEvent, href: string) {
+    if (!href.startsWith('#')) return;
+    e.preventDefault();
+    const el = document.querySelector(href) as HTMLElement | null;
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', href);
+    }
+    setIsOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-50 h-14 border-b border-primary bg-primary shadow-sm">
       <div className="container-base relative flex h-full items-center justify-center py-0">
@@ -30,7 +41,12 @@ export default function TopNav() {
         </button>
         <nav className="hidden gap-3 md:gap-4 text-base sm:flex">
           {links.map(({ href, label }) => (
-            <Link key={href} href={href} className="text-primary-foreground no-underline hover:no-underline hover:bg-danger rounded-[3px] px-4 py-1.5 leading-none">
+            <Link
+              key={href}
+              href={href}
+              onClick={(e) => handleNavClick(e, href)}
+              className="text-primary-foreground no-underline hover:no-underline hover:bg-danger rounded-[3px] px-4 py-1.5 leading-none"
+            >
               {label}
             </Link>
           ))}
@@ -40,7 +56,12 @@ export default function TopNav() {
         <div className="sm:hidden border-t border-primary bg-primary">
           <nav className="container-base py-2 grid grid-cols-1 gap-1">
             {links.map(({ href, label }) => (
-              <Link key={href} href={href} className="py-2 text-primary-foreground no-underline hover:no-underline hover:opacity-90">
+              <Link
+                key={href}
+                href={href}
+                onClick={(e) => handleNavClick(e, href)}
+                className="py-2 text-primary-foreground no-underline hover:no-underline hover:opacity-90"
+              >
                 {label}
               </Link>
             ))}
