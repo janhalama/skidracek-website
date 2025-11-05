@@ -46,10 +46,7 @@ export default async function Params() {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-16 sm:h-24 bg-gradient-to-b from-white to-transparent" />
         </div>
       </div>
-      {/* Parameters footer gradient strip (visual separator like original) */}
-      <div className="w-full">
-        <div className="h-3 bg-gradient-to-b from-white to-[#e4f5fc]" />
-      </div>
+      {/* Removed footer gradient strip to avoid spacing before next header */}
     </section>
   );
 }
