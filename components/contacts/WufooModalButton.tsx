@@ -10,6 +10,7 @@ import { Modal } from "@/components/ui/Modal";
 export default function WufooModalButton({ url, label = "Napište nám (formulář)" }: { url: string; label?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const containerId = useMemo(function computeContainerId() {
     try {
       const parsed = new URL(url);
@@ -44,7 +45,6 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
       // Display again if already initialized
       try {
         (window as any)[embedOptions.formHash].display();
-        setIsLoading(false);
       } catch {}
       return;
     }
@@ -73,7 +73,6 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
         instance.display();
         (window as any)[embedOptions.formHash] = instance;
         scriptLoadedRef.current = true;
-        setIsLoading(false);
       } catch {}
     };
 
@@ -82,6 +81,36 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
       // keep script for subsequent opens; no removal
     };
   }, [isOpen, embedOptions]);
+
+  // Keep loader visible until the embedded iframe reports load
+  useEffect(function watchIframeLoad() {
+    if (!isOpen) return;
+    const target = containerRef.current;
+    if (!target) return;
+
+    function tryAttach(): boolean {
+      const iframe = target.querySelector<HTMLIFrameElement>("iframe");
+      if (!iframe) return false;
+      let handled = false;
+      const onLoad = () => {
+        handled = true;
+        setIsLoading(false);
+      };
+      // If it loads after we attach, we'll catch it
+      iframe.addEventListener("load", onLoad, { once: true });
+      // Fallback: if already loaded and load won't fire again
+      setTimeout(() => { if (!handled) setIsLoading(false); }, 2000);
+      return true;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (tryAttach()) observer.disconnect();
+    });
+    observer.observe(target, { childList: true, subtree: true });
+    // Also attempt immediately in case iframe already present
+    tryAttach();
+    return () => observer.disconnect();
+  }, [isOpen, containerId]);
 
   const onClose = useCallback(function handleClose() {
     setIsOpen(false);
@@ -115,7 +144,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
                 </div>
               </div>
             ) : null}
-            <div id={containerId} />
+            <div id={containerId} ref={containerRef} />
           </div>
         </div>
       </Modal>
