@@ -18,23 +18,23 @@ export default async function Contacts() {
           <h2 className="text-2xl font-semibold text-center text-primary">Kontakty</h2>
         </div>
       </div>
-      <div className="container-base py-8 bg-white">
+      <div className="container-base py-8 bg-white text-base">
         {data ? (
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
-              <h3 className="font-medium">Správce</h3>
-              <p className="text-sm">{data.manager.name}</p>
-              <p className="text-sm">{data.manager.phone}</p>
-              <p className="text-sm">
+            <div>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Správce</h3>
+              <p className="leading-relaxed text-(--color-text)">{data.manager.name}</p>
+              <p className="leading-relaxed text-(--color-text)">{data.manager.phone}</p>
+              <p className="leading-relaxed text-(--color-text)">
                 <a className="underline" href={`mailto:${data.manager.email}`}>{data.manager.email}</a>
               </p>
             </div>
-            <div className="rounded-sm border border-border bg-surface p-4 shadow-sm">
-              <h3 className="font-medium">Provozovatel</h3>
-              <p className="text-sm">{data.operator.name}</p>
-              <p className="text-sm whitespace-pre-wrap">{data.operator.address}</p>
-              <p className="text-sm">IČO: {data.operator.ico}</p>
-              <p className="text-sm">
+            <div>
+              <h3 className="font-medium text-primary text-lg sm:text-xl">Provozovatel</h3>
+              <p className="leading-relaxed text-(--color-text)">{data.operator.name}</p>
+              <p className="leading-relaxed text-(--color-text) whitespace-pre-wrap">{data.operator.address}</p>
+              <p className="leading-relaxed text-(--color-text)">IČO: {data.operator.ico}</p>
+              <p className="leading-relaxed text-(--color-text)">
                 <a className="underline" href={data.operator.web} target="_blank" rel="noopener noreferrer">{data.operator.web}</a>
               </p>
             </div>
