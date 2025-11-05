@@ -9,17 +9,19 @@ export default function Gallery() {
           <h2 className="text-2xl font-semibold text-center text-primary">Dráček v obrazech</h2>
         </div>
       </div>
+      {/* Full-bleed image aligned with header edges */}
+      <div className="w-full bg-white">
+        <Image
+          src="/images/original/gallery.jpg"
+          alt="Dráček v obrazech"
+          width={1920}
+          height={1080}
+          className="block w-full h-auto"
+          sizes="100vw"
+          priority={false}
+        />
+      </div>
       <div className="container-base py-8 bg-white">
-        <div className="mb-4">
-          <Image
-            src="/images/original/gallery.jpg"
-            alt="Dráček v obrazech"
-            width={1200}
-            height={675}
-            className="w-full h-auto rounded-sm border border-border shadow-sm"
-            priority={false}
-          />
-        </div>
         <p className="text-sm text-(--color-text)">Aktuální fotky najdete na našem Flickr profilu.</p>
         <p className="mt-2">
           <a
