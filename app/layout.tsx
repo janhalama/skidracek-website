@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 
 export const metadata: Metadata = {
-  title: "SkiDráček",
+  title: "SkiDráček — Dětský vlek a školička v Alšovicích",
   description: "Místní vlek a školička v Alšovicích.",
   icons: [
     { rel: "icon", url: "/images/original/logo.png" },
