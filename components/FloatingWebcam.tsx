@@ -8,7 +8,7 @@ export default async function FloatingWebcam() {
   const url = data?.webcamUrl;
   if (!url) return null;
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white -mt-4">
       <div className="container-base py-3 text-center">
         <a
           href={url}
