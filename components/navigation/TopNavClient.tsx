@@ -28,7 +28,7 @@ export default function TopNavClient({ rightSlot, webcamUrl }: { rightSlot?: Rea
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
           onClick={toggleMenu}
-          className="absolute right-0 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-primary-foreground/40 text-primary-foreground hover:opacity-90 sm:hidden"
+          className="absolute right-2 sm:right-4 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-primary-foreground/40 text-primary-foreground hover:opacity-90 sm:hidden"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 6h18M3 12h18M3 18h18" />
