@@ -346,24 +346,6 @@ export default function EditorClient() {
       ) : null}
 
       <div className="grid gap-8 md:grid-cols-2">
-          <form
-            className="rounded-md border border-border bg-surface p-4 space-y-3"
-            onSubmit={hoursForm.handleSubmit(onSaveHours)}
-          >
-            <h3 className="text-lg font-semibold">Otevírací doba</h3>
-            <textarea
-              className="w-full border rounded p-2 min-h-[120px]"
-              {...hoursForm.register('text')}
-              placeholder="Text otevírací doby"
-            />
-            {hoursForm.formState.errors.text ? (
-              <p className="text-sm text-red-600">{hoursForm.formState.errors.text.message}</p>
-            ) : null}
-            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-              Uložit
-            </button>
-          </form>
-
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={heroForm.handleSubmit(onSaveHero)}>
             <h3 className="text-lg font-semibold">Hero</h3>
             <input
@@ -377,13 +359,31 @@ export default function EditorClient() {
             <label className="inline-flex items-center gap-2 text-sm">
               <input type="checkbox" {...heroForm.register('noticeBannerVisible')} /> Zobrazit upozornění
             </label>
-            <input type="text" className="w-full border rounded p-2" {...heroForm.register('noticeBannerText')} placeholder="Text upozornění" />
+            <textarea className="w-full border rounded p-2 min-h-[100px] resize-y" {...heroForm.register('noticeBannerText')} placeholder="Text upozornění" />
             <div className="grid grid-cols-2 gap-2">
               <input type="text" className="w-full border rounded p-2" {...heroForm.register('ctaLabel')} placeholder="CTA text" />
               <input type="url" className="w-full border rounded p-2" {...heroForm.register('ctaUrl')} placeholder="CTA URL" />
             </div>
             {heroForm.formState.errors.tagline ? (
               <p className="text-sm text-red-600">{heroForm.formState.errors.tagline.message}</p>
+            ) : null}
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+              Uložit
+            </button>
+          </form>
+
+          <form
+            className="rounded-md border border-border bg-surface p-4 space-y-3"
+            onSubmit={hoursForm.handleSubmit(onSaveHours)}
+          >
+            <h3 className="text-lg font-semibold">Otevírací doba</h3>
+            <textarea
+              className="w-full border rounded p-2 min-h-[120px]"
+              {...hoursForm.register('text')}
+              placeholder="Text otevírací doby"
+            />
+            {hoursForm.formState.errors.text ? (
+              <p className="text-sm text-red-600">{hoursForm.formState.errors.text.message}</p>
             ) : null}
             <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               Uložit
