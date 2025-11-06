@@ -18,9 +18,9 @@ export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; o
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div role="dialog" aria-modal="true" aria-label={title || "Dialog"} className="relative z-[101] w-[92vw] max-w-[720px] rounded-sm bg-white shadow-xl border border-primary">
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center">
+      <div className="absolute inset-0 z-[10000] bg-black/40" onClick={onClose} />
+      <div role="dialog" aria-modal="true" aria-label={title || "Dialog"} className="relative z-[10001] w-[92vw] max-w-[720px] rounded-sm bg-white shadow-xl border border-primary">
         <div className="flex items-center justify-between border-b border-border px-4 py-2">
           <div className="text-sm font-medium text-primary">{title}</div>
           <button
