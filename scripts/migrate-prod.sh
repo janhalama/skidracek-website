@@ -7,13 +7,18 @@ echo "🚀 Running production database migrations..."
 if [ "$VERCEL_ENV" = "production" ] || [ "$NODE_ENV" = "production" ]; then
     echo "✅ Production environment detected"
 
-    # Check if we have the required environment variables
-    if [ -z "$SUPABASE_ACCESS_TOKEN" ] || [ -z "$POSTGRES_PASSWORD" ] || [ -z "$SUPABASE_URL" ]; then
-        echo "❌ Missing required environment variables:"
-        echo "   - SUPABASE_ACCESS_TOKEN (required for authentication)"
+    # If the Supabase CLI access token isn't present, skip migrations (don't fail the build)
+    if [ -z "$SUPABASE_ACCESS_TOKEN" ]; then
+        echo "ℹ️  SUPABASE_ACCESS_TOKEN not set; skipping migrations during build."
+        echo "    Provide a personal access token from Supabase if you want automated prod migrations."
+        exit 0
+    fi
+
+    # Ensure required DB variables exist when running migrations
+    if [ -z "$POSTGRES_PASSWORD" ] || [ -z "$SUPABASE_URL" ]; then
+        echo "❌ Missing required environment variables for migrations:"
         echo "   - POSTGRES_PASSWORD (your database password)"
         echo "   - SUPABASE_URL (used to derive project ref)"
-        echo "   Please set these in your Vercel environment variables."
         exit 1
     fi
 
