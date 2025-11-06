@@ -56,8 +56,13 @@ export default function TopNavClient({ rightSlot, webcamUrl }: { rightSlot?: Rea
                 href={webcamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-2 text-primary-foreground no-underline hover:no-underline"
+                className="py-2 text-primary-foreground no-underline hover:no-underline inline-flex items-center gap-2"
+                title="Otevře se v novém okně"
               >
+                <svg aria-hidden className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13 7h-2a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V9.414l-5.293 5.293a1 1 0 01-1.414-1.414L13 7z" />
+                  <path d="M5 4a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V6h3a1 1 0 100-2H5z" />
+                </svg>
                 Webkamera online
               </a>
             ) : null}
