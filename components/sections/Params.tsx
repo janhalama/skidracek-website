@@ -37,7 +37,7 @@ export default async function Params() {
         </div>
       </div>
       {/* Image below parameters, as on the original site */}
-      <div className="w-full bg-white">
+      <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-white">
         <div className="relative w-full h-[28rem] sm:h-[36rem] bg-white bg-no-repeat bg-cover bg-bottom"
           style={{ backgroundImage: 'url(/images/original/maskarak.jpg)' }}
           aria-label="Schématická mapka vleku"
