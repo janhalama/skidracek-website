@@ -12,7 +12,7 @@ export default async function FloatingWebcam() {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed right-40 top-[59px] sm:right-40 z-90 inline-flex items-center rounded-sm bg-white text-primary border border-primary px-3 py-2 text-sm font-medium leading-none shadow-md hover:bg-danger hover:text-primary-foreground hover:shadow-lg"
+      className="hidden sm:inline-flex fixed right-40 top-[59px] sm:right-40 z-90 items-center rounded-sm bg-white text-primary border border-primary px-3 py-2 text-sm font-medium leading-none shadow-md hover:bg-danger hover:text-primary-foreground hover:shadow-lg"
     >
       <span className="align-middle">
         <svg aria-hidden className="mr-3 h-5 w-5 inline align-middle" viewBox="0 0 24 24" fill="currentColor">

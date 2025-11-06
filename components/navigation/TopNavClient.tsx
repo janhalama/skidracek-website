@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function TopNavClient({ rightSlot }: { rightSlot?: React.ReactNode }) {
+export default function TopNavClient({ rightSlot, webcamUrl }: { rightSlot?: React.ReactNode; webcamUrl?: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleMenu() { setIsOpen(prev => !prev); }
@@ -51,6 +51,16 @@ export default function TopNavClient({ rightSlot }: { rightSlot?: React.ReactNod
       {isOpen && (
         <div className="sm:hidden border-t border-primary bg-primary">
           <nav className="container-base py-2 grid grid-cols-1 gap-1">
+            {webcamUrl ? (
+              <a
+                href={webcamUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 text-primary-foreground no-underline hover:no-underline"
+              >
+                Webkamera online
+              </a>
+            ) : null}
             {links.map(({ href, label }) => (
               <Link
                 key={href}
