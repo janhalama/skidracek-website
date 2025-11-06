@@ -103,6 +103,13 @@ export default function EditorClient() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [toasts, setToasts] = useState<Array<{ id: string; message: string; variant: 'success' | 'error' }>>([]);
+
+  function addToast(message: string, variant: 'success' | 'error') {
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    setToasts((prev) => [...prev, { id, message, variant }]);
+    setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== id)), 2500);
+  }
 
   const hoursForm = useForm<HoursForm>({ resolver: zodResolver(hoursSchema), defaultValues: { text: '' } });
   const heroForm = useForm<HeroForm>({ resolver: zodResolver(heroSchema), defaultValues: { tagline: '', webcamUrl: '', backgroundImageUrl: '', noticeBannerText: '', noticeBannerVisible: false, ctaLabel: '', ctaUrl: '' } });
@@ -186,8 +193,10 @@ export default function EditorClient() {
       const saved = await saveBlock('hours', values);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -204,8 +213,10 @@ export default function EditorClient() {
       const saved = await saveBlock('hero', payload);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -216,8 +227,10 @@ export default function EditorClient() {
       const saved = await saveBlock('directions', { car: values.car, gps: values.gps, mapyCzUrl: values.mapyCzUrl, buses });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -231,8 +244,10 @@ export default function EditorClient() {
       });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -243,8 +258,10 @@ export default function EditorClient() {
       const saved = await saveBlock('params', { subtitle: values.subtitle || undefined, items });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -260,8 +277,10 @@ export default function EditorClient() {
       });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -272,8 +291,10 @@ export default function EditorClient() {
       const saved = await saveBlock('pricing', { rows });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -284,8 +305,10 @@ export default function EditorClient() {
       const saved = await saveBlock('news', { items });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
+      addToast('Uloženo.', 'success');
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
+      addToast(e?.message || 'Chyba při ukládání.', 'error');
     }
   }
 
@@ -323,7 +346,7 @@ export default function EditorClient() {
             {hoursForm.formState.errors.text ? (
               <p className="text-sm text-red-600">{hoursForm.formState.errors.text.message}</p>
             ) : null}
-            <button type="submit" className="underline">
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">
               Uložit
             </button>
           </form>
@@ -349,7 +372,7 @@ export default function EditorClient() {
             {heroForm.formState.errors.tagline ? (
               <p className="text-sm text-red-600">{heroForm.formState.errors.tagline.message}</p>
             ) : null}
-            <button type="submit" className="underline">
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">
               Uložit
             </button>
           </form>
@@ -360,7 +383,7 @@ export default function EditorClient() {
             <input type="text" className="w-full border rounded p-2" {...directionsForm.register('gps')} placeholder="GPS (lat, lon)" />
             <input type="url" className="w-full border rounded p-2" {...directionsForm.register('mapyCzUrl')} placeholder="Mapy.cz trasa URL" />
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...directionsForm.register('busesJson')} placeholder='Seznam autobusů (JSON: [{"label":"..","url":".."}])' />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={contactsForm.handleSubmit(onSaveContacts)}>
@@ -373,14 +396,14 @@ export default function EditorClient() {
             <input type="text" className="w-full border rounded p-2" {...contactsForm.register('operatorIco')} placeholder="Provozovatel: IČO" />
             <input type="url" className="w-full border rounded p-2" {...contactsForm.register('operatorWeb')} placeholder="Provozovatel: web" />
             <input type="url" className="w-full border rounded p-2" {...contactsForm.register('wufooUrl')} placeholder="Wufoo URL" />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={paramsForm.handleSubmit(onSaveParams)}>
             <h3 className="text-lg font-semibold">Parametry vleku</h3>
             <input type="text" className="w-full border rounded p-2" {...paramsForm.register('subtitle')} placeholder="Podtitulek" />
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...paramsForm.register('itemsJson')} placeholder='Položky (JSON: [{"header":"..","value":"..","unit":".."}])' />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={schoolForm.handleSubmit(onSaveSchool)}>
@@ -397,20 +420,39 @@ export default function EditorClient() {
               <input type="email" className="w-full border rounded p-2" {...schoolForm.register('instructorEmail')} placeholder="Instruktor: e‑mail" />
             </div>
             <input type="url" className="w-full border rounded p-2" {...schoolForm.register('licenseImageUrl')} placeholder="Licence (URL)" />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={pricingForm.handleSubmit(onSavePricing)}>
             <h3 className="text-lg font-semibold">Ceník (řádky)</h3>
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...pricingForm.register('rowsJson')} placeholder='Řádky (JSON: [{"duration":"..","adults":"..","kids":".."}])' />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={newsForm.handleSubmit(onSaveNews)}>
             <h3 className="text-lg font-semibold">Aktuální akce a novinky</h3>
             <textarea className="w-full border rounded p-2 min-h-[160px]" {...newsForm.register('itemsJson')} placeholder='Položky (JSON pole objektů s id,title,body,dateIso,isVisible)' />
-            <button type="submit" className="underline">Uložit</button>
+            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
           </form>
+        </div>
+      ) : null}
+
+      {/* Toasts */}
+      {toasts.length ? (
+        <div className="fixed bottom-4 right-4 z-[100] space-y-2">
+          {toasts.map((t) => (
+            <div
+              key={t.id}
+              className={
+                'min-w-[220px] rounded-sm border px-3 py-2 text-sm shadow ' +
+                (t.variant === 'success'
+                  ? 'border-green-600/30 bg-green-50 text-green-800'
+                  : 'border-red-600/30 bg-red-50 text-red-800')
+              }
+            >
+              {t.message}
+            </div>
+          ))}
         </div>
       ) : null}
     </div>
