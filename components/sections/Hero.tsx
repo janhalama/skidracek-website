@@ -41,7 +41,7 @@ export default async function Hero() {
           alt="SkiDráček logo"
           width={220}
           height={120}
-          className="absolute z-30 left-1/2 -translate-x-1/2 top-[40px] sm:top-[80px]"
+          className="absolute z-30 left-1/2 -translate-x-1/2 top-[12px] sm:top-[64px] w-[160px] h-auto sm:w-[220px]"
           priority
         />
         <div className="mt-6 w-full max-w-[720px] px-4">
