@@ -26,10 +26,24 @@ if [ "$VERCEL_ENV" = "production" ] || [ "$NODE_ENV" = "production" ]; then
     echo "🔑 Setting up Supabase authentication..."
     export SUPABASE_ACCESS_TOKEN="$SUPABASE_ACCESS_TOKEN"
 
-    # Derive project ref if not provided, using SUPABASE_URL like https://<ref>.supabase.co
-    PROJECT_REF=$(echo "$SUPABASE_URL" | sed -E 's#https?://([^.]+)\\.supabase\\.co.*#\1#')
-    if [ -z "$PROJECT_REF" ]; then
-        echo "❌ Unable to determine Supabase project ref from SUPABASE_URL: $SUPABASE_URL"
+    # Determine project ref (env override first, otherwise derive from URL)
+    if [ -n "$SUPABASE_PROJECT_REF" ]; then
+        PROJECT_REF="$SUPABASE_PROJECT_REF"
+    else
+        CANDIDATE_URL="$SUPABASE_URL"
+        # Accept raw 20-char ref directly
+        if echo "$CANDIDATE_URL" | grep -Eq '^[a-z0-9]{20}$'; then
+            PROJECT_REF="$CANDIDATE_URL"
+        else
+            # Extract subdomain before .supabase.co or .supabase.in
+            PROJECT_REF=$(echo "$CANDIDATE_URL" | sed -E 's#https?://([^.]+)\.supabase\.(co|in).*#\1#')
+        fi
+    fi
+
+    if ! echo "$PROJECT_REF" | grep -Eq '^[a-z0-9]{20}$'; then
+        echo "❌ Invalid project ref format. Must be a 20-char lowercase string."
+        echo "   Set SUPABASE_PROJECT_REF explicitly (Dashboard → Settings → General)"
+        echo "   or ensure SUPABASE_URL is like https://<ref>.supabase.co"
         exit 1
     fi
 
