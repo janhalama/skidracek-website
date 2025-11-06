@@ -7,6 +7,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import NavUser from '@/components/navigation/NavUser';
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,12 @@ export default function TopNav() {
             <path d="M3 6h18M3 12h18M3 18h18" />
           </svg>
         </button>
+        <div className="absolute right-0 hidden sm:block">
+          {/* Logged-in admin identity */}
+          {/* Server component renders null when no session */}
+          {/* @ts-expect-error Async Server Component in Client wrapper is allowed via RSC interop */}
+          <NavUser />
+        </div>
         <nav className="hidden gap-3 md:gap-4 text-base sm:flex">
           {links.map(({ href, label }) => (
             <Link
