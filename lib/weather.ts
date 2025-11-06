@@ -32,8 +32,8 @@ export async function fetchNormalizedWeather(options?: { revalidateSeconds?: num
       next: options?.revalidateSeconds ? { revalidate: options.revalidateSeconds } : undefined,
     });
     if (!res.ok) throw new Error(`Weather fetch failed: ${res.status}`);
-    const json: any = await res.json();
-    const current = json?.current ?? {};
+    const json: { current?: { temperature_2m?: number; snow_depth?: number; time?: string } } = await res.json();
+    const current = json.current ?? {};
     const temperatureC = typeof current.temperature_2m === 'number' ? current.temperature_2m : null;
     const snowDepthCm = typeof current.snow_depth === 'number' ? current.snow_depth : null;
     const lastUpdatedIso = typeof current.time === 'string' ? current.time : null;

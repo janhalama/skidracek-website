@@ -55,21 +55,6 @@ export default async function Hero() {
             <div className="absolute right-3 top-3 inline-flex items-center rounded-sm bg-white px-2 py-0.5 text-sm text-primary">
               Sníh: {weather?.snowDepthCm !== null && weather?.snowDepthCm !== undefined ? Math.round(weather.snowDepthCm) + ' cm' : '— cm'}
             </div>
-            {/* Webcam CTA aligned to white box border (desktop only) */}
-            {data?.webcamUrl ? (
-              <a
-                href={data.webcamUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex absolute right-0 bottom-3 items-center rounded-sm bg-white text-primary border border-primary px-3 py-1 text-sm font-medium leading-none shadow-md hover:bg-danger hover:text-primary-foreground"
-              >
-                <svg aria-hidden className="mr-2 h-5 w-5 inline align-middle" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4 7a3 3 0 013-3h6a3 3 0 013 3v6a3 3 0 01-3 3H7a3 3 0 01-3-3V7z" />
-                  <path d="M17 9l4-2v8l-4-2V9z" />
-                </svg>
-                <span className="align-middle">Webkamera online</span>
-              </a>
-            ) : null}
           </div>
           {/* Blue stripe (wider than white card), rendered above the card */}
           <div className="relative z-20 mx-auto -mt-3 w-full max-w-[700px] rounded-[3px] bg-primary px-4 py-3 text-center text-base font-semibold text-primary-foreground sm:-mt-4 sm:text-lg">

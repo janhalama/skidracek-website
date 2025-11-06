@@ -7,6 +7,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 import { getCurrentUserEmail, isEmailAllowed } from '@/lib/auth';
+import Link from 'next/link';
 import EditorClient from './EditorClient';
 
 export default async function AdminPage() {
@@ -29,8 +30,8 @@ export default async function AdminPage() {
             Tato stránka vyžaduje přihlášení Google a povolení v seznamu správců.
           </p>
           <div className="mt-6 flex gap-3">
-            <a href="/" className="underline text-primary">Zpět na hlavní stránku</a>
-            <a href="/api/auth/signin?provider=google&callbackUrl=%2Fadmin" className="underline">Přihlásit se Google</a>
+            <Link href="/" className="underline text-primary">Zpět na hlavní stránku</Link>
+            <Link href="/api/auth/signin?provider=google&callbackUrl=%2Fadmin" className="underline">Přihlásit se Google</Link>
           </div>
         </div>
       </main>

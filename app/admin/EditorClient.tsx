@@ -6,12 +6,12 @@
 
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-type ContentBlock = { slug: string; data: any; updated_at: string };
+type ContentBlock = { slug: string; data: unknown; updated_at: string };
 
 /* Fetcher for one block */
 async function fetchBlock(slug: string): Promise<ContentBlock | null> {
@@ -177,7 +177,7 @@ export default function EditorClient() {
         });
         if (pricing?.data) pricingForm.reset({ rowsJson: JSON.stringify(pricing.data.rows || [], null, 2) });
         if (news?.data) newsForm.reset({ itemsJson: JSON.stringify(news.data.items || [], null, 2) });
-      } catch (e) {
+  } catch (e) {
         setStatus('Nepodařilo se načíst obsah.');
       }
     })();
@@ -194,9 +194,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -217,9 +218,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -234,9 +236,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -254,9 +257,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -271,9 +275,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -293,9 +298,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -310,9 +316,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }
@@ -327,9 +334,10 @@ export default function EditorClient() {
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
       addToast('Uloženo.', 'success');
-    } catch (e: any) {
-      setStatus(e?.message || 'Chyba při ukládání.');
-      addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Chyba při ukládání.';
+      setStatus(msg);
+      addToast(msg, 'error');
     } finally {
       setIsSaving(false);
     }

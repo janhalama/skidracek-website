@@ -1,7 +1,6 @@
 /* Renders Lift parameters from Supabase */
 
 import { fetchContentBlock } from '@/lib/content-service';
-import Image from 'next/image';
 
 type ParamsData = {
   subtitle?: string;

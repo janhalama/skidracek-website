@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 /*
@@ -8,8 +8,6 @@ import { createPortal } from "react-dom";
   Closes on ESC, backdrop click, or close button.
 */
 export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; onClose: () => void; children: React.ReactNode; title?: string }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(function onMount() { setMounted(true); }, []);
   useEffect(function setupEscToClose() {
     if (!isOpen) return;
     function onKey(e: KeyboardEvent) {
@@ -41,6 +39,6 @@ export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; o
       </div>
     </div>
   );
-  if (!mounted) return null;
+  if (typeof window === 'undefined') return null;
   return createPortal(modalUi, document.body);
 }

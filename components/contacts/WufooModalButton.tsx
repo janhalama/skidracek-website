@@ -41,10 +41,11 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
     if (!isOpen) return;
     if (!embedOptions.userName || !embedOptions.formHash) return;
 
-    if (scriptLoadedRef.current && (window as any)[embedOptions.formHash]) {
+    if (scriptLoadedRef.current && (window as unknown as Record<string, unknown>)[embedOptions.formHash]) {
       // Display again if already initialized
       try {
-        (window as any)[embedOptions.formHash].display();
+        const inst = (window as unknown as Record<string, unknown>)[embedOptions.formHash] as { display: () => void } | undefined;
+        inst?.display();
       } catch {}
       return;
     }
@@ -56,7 +57,8 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
 
     s.onload = function onLoad() {
       try {
-        const WufooForm = (window as any).WufooForm;
+        type WufooFormInstance = { initialize: (opts: { userName: string; formHash: string; autoResize: boolean; height: string; async: boolean; host: string; header: 'show' | 'hide'; ssl: boolean }) => void; display: () => void };
+        const WufooForm = (window as unknown as { WufooForm?: new () => WufooFormInstance }).WufooForm;
         if (!WufooForm) return;
         const options = {
           userName: embedOptions.userName,
@@ -71,7 +73,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
         const instance = new WufooForm();
         instance.initialize(options);
         instance.display();
-        (window as any)[embedOptions.formHash] = instance;
+        (window as unknown as Record<string, unknown>)[embedOptions.formHash] = instance as unknown;
         scriptLoadedRef.current = true;
       } catch {}
     };

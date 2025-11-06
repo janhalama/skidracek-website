@@ -6,7 +6,8 @@ import { fetchContentBlock } from '@/lib/content-service';
 
 export default async function TopNav() {
   const hero = await fetchContentBlock('hero');
-  const webcamUrl = (hero?.data as any)?.webcamUrl as string | undefined;
+  const heroData = hero?.data as { webcamUrl?: string } | undefined;
+  const webcamUrl = heroData?.webcamUrl;
   return <TopNavClient rightSlot={<NavUser />} webcamUrl={webcamUrl} />;
 }
 

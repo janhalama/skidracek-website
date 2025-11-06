@@ -26,13 +26,15 @@ export async function resolveAllowedAdmins(): Promise<string[]> {
   const supabase = getSupabaseServerClient();
   const { data: rows, error } = await supabase.from('admin_allowlist').select('email');
   if (error) throw new Error(`Failed to read admin allowlist: ${error.message}`);
-  const emailsFromTable = (rows ?? []).map((r: any) => String(r.email).toLowerCase()).filter((e) => e.length > 0);
+  const emailsFromTable = (rows as { email: string }[] | null ?? [])
+    .map((r) => String(r.email).toLowerCase())
+    .filter((e) => e.length > 0);
   if (emailsFromTable.length > 0) return emailsFromTable;
 
   // Fallback to content block (legacy) if present
   const block = await fetchContentBlock('admin-allowlist');
-  if (block && block.data && Array.isArray((block.data as any).emails)) {
-    return ((block.data as any).emails as string[]).map((e) => e.toLowerCase());
+  if (block && block.data && Array.isArray((block.data as { emails?: string[] }).emails)) {
+    return ((block.data as { emails?: string[] }).emails || []).map((e) => e.toLowerCase());
   }
 
   // Fallback to env variable if configured
