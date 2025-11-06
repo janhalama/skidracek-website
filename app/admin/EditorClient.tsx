@@ -464,7 +464,7 @@ export default function EditorClient() {
 
       {/* Toasts */}
       {toasts.length ? (
-        <div className="fixed bottom-4 right-4 z-[100] space-y-2">
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] space-y-2">
           {toasts.map((t) => (
             <div
               key={t.id}
