@@ -36,7 +36,7 @@ export default function Gallery() {
           priority={false}
         />
       </div>
-      
+
     </section>
   );
 }
