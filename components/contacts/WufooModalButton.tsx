@@ -85,11 +85,11 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
   // Keep loader visible until the embedded iframe reports load
   useEffect(function watchIframeLoad() {
     if (!isOpen) return;
-    const target = containerRef.current;
-    if (!target) return;
+    const root = containerRef.current;
+    if (!root) return;
 
-    function tryAttach(): boolean {
-      const iframe = target.querySelector<HTMLIFrameElement>("iframe");
+    function tryAttach(el: HTMLElement): boolean {
+      const iframe = el.querySelector<HTMLIFrameElement>("iframe");
       if (!iframe) return false;
       let handled = false;
       const onLoad = () => {
@@ -104,11 +104,11 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
     }
 
     const observer = new MutationObserver(() => {
-      if (tryAttach()) observer.disconnect();
+      if (tryAttach(root)) observer.disconnect();
     });
-    observer.observe(target, { childList: true, subtree: true });
+    observer.observe(root, { childList: true, subtree: true });
     // Also attempt immediately in case iframe already present
-    tryAttach();
+    tryAttach(root);
     return () => observer.disconnect();
   }, [isOpen, containerId]);
 
