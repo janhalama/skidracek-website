@@ -104,6 +104,7 @@ export default function EditorClient() {
   const [status, setStatus] = useState<string | null>(null);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [toasts, setToasts] = useState<Array<{ id: string; message: string; variant: 'success' | 'error' }>>([]);
+  const [isSaving, setIsSaving] = useState(false);
 
   function addToast(message: string, variant: 'success' | 'error') {
     const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -190,6 +191,7 @@ export default function EditorClient() {
   async function onSaveHours(values: HoursForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const saved = await saveBlock('hours', values);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
@@ -197,12 +199,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveHero(values: HeroForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const payload = {
         tagline: values.tagline,
         webcamUrl: values.webcamUrl || undefined,
@@ -217,12 +222,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveDirections(values: DirectionsForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const buses = values.busesJson ? JSON.parse(values.busesJson) : [];
       const saved = await saveBlock('directions', { car: values.car, gps: values.gps, mapyCzUrl: values.mapyCzUrl, buses });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
@@ -231,12 +239,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveContacts(values: ContactsForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const saved = await saveBlock('contacts', {
         manager: { name: values.managerName, phone: values.managerPhone, email: values.managerEmail },
         operator: { name: values.operatorName, address: values.operatorAddress, ico: values.operatorIco, web: values.operatorWeb },
@@ -248,12 +259,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveParams(values: ParamsForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const items = values.itemsJson ? JSON.parse(values.itemsJson) : [];
       const saved = await saveBlock('params', { subtitle: values.subtitle || undefined, items });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
@@ -262,12 +276,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveSchool(values: SchoolForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const saved = await saveBlock('school', {
         subtitle: values.subtitle || undefined,
         description: values.description,
@@ -281,12 +298,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSavePricing(values: PricingForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const rows = values.rowsJson ? JSON.parse(values.rowsJson) : [];
       const saved = await saveBlock('pricing', { rows });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
@@ -295,12 +315,15 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   async function onSaveNews(values: NewsForm) {
     setStatus(null);
     try {
+      setIsSaving(true);
       const items = values.itemsJson ? JSON.parse(values.itemsJson) : [];
       const saved = await saveBlock('news', { items });
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
@@ -309,11 +332,13 @@ export default function EditorClient() {
     } catch (e: any) {
       setStatus(e?.message || 'Chyba při ukládání.');
       addToast(e?.message || 'Chyba při ukládání.', 'error');
+    } finally {
+      setIsSaving(false);
     }
   }
 
   return (
-    <div className="mt-6 space-y-8">
+    <div className={`mt-6 space-y-8${isSaving ? ' cursor-wait' : ''}`}>
       <div className="flex items-center gap-3">
         <label className="inline-flex items-center gap-2 cursor-pointer">
           <input
@@ -346,7 +371,7 @@ export default function EditorClient() {
             {hoursForm.formState.errors.text ? (
               <p className="text-sm text-red-600">{hoursForm.formState.errors.text.message}</p>
             ) : null}
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               Uložit
             </button>
           </form>
@@ -372,7 +397,7 @@ export default function EditorClient() {
             {heroForm.formState.errors.tagline ? (
               <p className="text-sm text-red-600">{heroForm.formState.errors.tagline.message}</p>
             ) : null}
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               Uložit
             </button>
           </form>
@@ -383,7 +408,7 @@ export default function EditorClient() {
             <input type="text" className="w-full border rounded p-2" {...directionsForm.register('gps')} placeholder="GPS (lat, lon)" />
             <input type="url" className="w-full border rounded p-2" {...directionsForm.register('mapyCzUrl')} placeholder="Mapy.cz trasa URL" />
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...directionsForm.register('busesJson')} placeholder='Seznam autobusů (JSON: [{"label":"..","url":".."}])' />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={contactsForm.handleSubmit(onSaveContacts)}>
@@ -396,14 +421,14 @@ export default function EditorClient() {
             <input type="text" className="w-full border rounded p-2" {...contactsForm.register('operatorIco')} placeholder="Provozovatel: IČO" />
             <input type="url" className="w-full border rounded p-2" {...contactsForm.register('operatorWeb')} placeholder="Provozovatel: web" />
             <input type="url" className="w-full border rounded p-2" {...contactsForm.register('wufooUrl')} placeholder="Wufoo URL" />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={paramsForm.handleSubmit(onSaveParams)}>
             <h3 className="text-lg font-semibold">Parametry vleku</h3>
             <input type="text" className="w-full border rounded p-2" {...paramsForm.register('subtitle')} placeholder="Podtitulek" />
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...paramsForm.register('itemsJson')} placeholder='Položky (JSON: [{"header":"..","value":"..","unit":".."}])' />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={schoolForm.handleSubmit(onSaveSchool)}>
@@ -420,19 +445,19 @@ export default function EditorClient() {
               <input type="email" className="w-full border rounded p-2" {...schoolForm.register('instructorEmail')} placeholder="Instruktor: e‑mail" />
             </div>
             <input type="url" className="w-full border rounded p-2" {...schoolForm.register('licenseImageUrl')} placeholder="Licence (URL)" />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={pricingForm.handleSubmit(onSavePricing)}>
             <h3 className="text-lg font-semibold">Ceník (řádky)</h3>
             <textarea className="w-full border rounded p-2 min-h-[120px]" {...pricingForm.register('rowsJson')} placeholder='Řádky (JSON: [{"duration":"..","adults":"..","kids":".."}])' />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
 
           <form className="rounded-md border border-border bg-surface p-4 space-y-3" onSubmit={newsForm.handleSubmit(onSaveNews)}>
             <h3 className="text-lg font-semibold">Aktuální akce a novinky</h3>
             <textarea className="w-full border rounded p-2 min-h-[160px]" {...newsForm.register('itemsJson')} placeholder='Položky (JSON pole objektů s id,title,body,dateIso,isVisible)' />
-            <button type="submit" className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90">Uložit</button>
+            <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
         </div>
       ) : null}
