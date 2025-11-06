@@ -56,7 +56,7 @@ export default function TopNavClient({ rightSlot, webcamUrl }: { rightSlot?: Rea
                 key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="py-2 text-primary-foreground no-underline hover:no-underline hover:opacity-90"
+                className="py-2 px-4 text-primary-foreground no-underline hover:no-underline hover:opacity-90"
               >
                 {label}
               </Link>
@@ -67,7 +67,7 @@ export default function TopNavClient({ rightSlot, webcamUrl }: { rightSlot?: Rea
                   href={webcamUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2 text-primary-foreground no-underline hover:no-underline inline-flex items-center gap-2"
+                  className="py-2 px-4 text-primary-foreground no-underline hover:no-underline inline-flex items-center gap-2"
                   title="Otevře se v novém okně"
                 >
                   <svg aria-hidden className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
