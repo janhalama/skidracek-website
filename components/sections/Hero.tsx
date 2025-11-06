@@ -61,7 +61,7 @@ export default async function Hero() {
                 href={data.webcamUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex absolute right-0 top-1/2 -translate-y-1/2 items-center rounded-sm bg-white text-primary border border-primary px-3 py-1 text-sm font-medium leading-none shadow-md hover:bg-danger hover:text-primary-foreground"
+                className="hidden sm:inline-flex absolute right-0 bottom-3 items-center rounded-sm bg-white text-primary border border-primary px-3 py-1 text-sm font-medium leading-none shadow-md hover:bg-danger hover:text-primary-foreground"
               >
                 <svg aria-hidden className="mr-2 h-5 w-5 inline align-middle" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M4 7a3 3 0 013-3h6a3 3 0 013 3v6a3 3 0 01-3 3H7a3 3 0 01-3-3V7z" />
