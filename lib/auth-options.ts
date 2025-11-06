@@ -4,12 +4,18 @@
 
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import { resolveAllowedAdmins } from '@/lib/auth';
 
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      authorization: {
+        params: {
+          prompt: 'select_account',
+        },
+      },
     }),
   ],
   session: { strategy: 'jwt' },
@@ -18,6 +24,16 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin',
   },
   callbacks: {
+    async signIn({ user }) {
+      try {
+        const email = user?.email?.toLowerCase();
+        if (!email) return false;
+        const allowed = await resolveAllowedAdmins();
+        return allowed.includes(email);
+      } catch {
+        return false;
+      }
+    },
     async redirect({ url, baseUrl }) {
       try {
         if (url.startsWith('/')) return `${baseUrl}${url}`;
