@@ -159,6 +159,10 @@ Pitfalls
 - **Weather provider**: access via server route; set a conservative timeout; cache for 1 hour; return a fallback structure on failure.
 - **Mapy.cz / bus schedules / Flickr**: external links opening in a new tab; no embeds.
 - **Wufoo**: use their embed code; ensure it’s loaded only on demand.
+- **Email forwarding (ImprovMX)**: Domain email is forwarded via `improvmx.com`.
+  - Configure MX records at the DNS provider to ImprovMX’s MX hosts.
+  - Create aliases in ImprovMX Dashboard to forward to target inboxes.
+  - No SMTP sending is configured; site uses contact form (Wufoo) instead of sending mail.
 
 ## Analytics, monitoring, and logging
 - **Analytics**: Enable Vercel Web Analytics for traffic insights without cookies.
