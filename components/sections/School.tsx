@@ -21,7 +21,7 @@ export default async function School() {
   const derivedSubtitle = (data?.subtitle?.trim() || paras[0] || '').trim();
   const bodyParas = data?.subtitle ? paras.filter(p => p !== derivedSubtitle) : paras.slice(1);
   return (
-    <section id="school" className="">
+    <section id="school" className="scroll-mt-20">
       <div className="bg-[#e4f5fc] py-4">
         <div className="container-base">
           <h2 className="text-2xl font-semibold text-center text-primary">Lyžařská škola</h2>
