@@ -123,7 +123,7 @@ export default function WufooModalButton({ url, label = "Napište nám (formulá
         className="inline-flex items-center rounded-sm border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-surface"
         onClick={() => { setIsOpen(true); setIsLoading(true); }}
       >
-        <svg aria-hidden="true" className="mr-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+        <svg aria-hidden="true" className="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path d="M2.94 6.34A2 2 0 014.33 6h11.34a2 2 0 011.39.34l-7.06 5.3a1 1 0 01-1.2 0L2.94 6.34z" />
           <path d="M18 8.12V14a2 2 0 01-2 2H4a2 2 0 01-2-2V8.12l6.47 4.86a3 3 0 003.06 0L18 8.12z" />
         </svg>
