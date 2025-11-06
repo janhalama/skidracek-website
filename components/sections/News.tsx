@@ -11,9 +11,9 @@ export default async function News() {
   const items = (data?.items || []).filter((i) => i.isVisible !== false);
   return (
     <section id="news" className="scroll-mt-20">
-      <div className="bg-[#e4f5fc] py-4">
+      <div className="bg-primary py-4">
         <div className="container-base">
-          <h2 className="text-2xl font-semibold text-center text-primary">Aktuální akce a novinky</h2>
+          <h2 className="text-2xl font-semibold text-center text-primary-foreground">Aktuální akce a novinky</h2>
         </div>
       </div>
       <div className="container-base py-8 bg-white">
