@@ -30,7 +30,12 @@ export default async function AdminPage() {
           </p>
           <div className="mt-6 flex gap-3">
             <a href="/" className="underline text-primary">Zpět na hlavní stránku</a>
-            <a href="/api/auth/signin?provider=google&callbackUrl=%2Fadmin" className="underline">Přihlásit se Google</a>
+            <a
+              href="/api/auth/signin/google?callbackUrl=%2Fadmin"
+              className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+            >
+              Přihlásit se Google
+            </a>
           </div>
         </div>
       </main>
