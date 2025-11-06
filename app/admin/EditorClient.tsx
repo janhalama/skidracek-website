@@ -100,7 +100,6 @@ const newsSchema = z.object({ itemsJson: z.string().optional() }); // JSON array
 type NewsForm = z.infer<typeof newsSchema>;
 
 export default function EditorClient() {
-  const [isEditMode, setIsEditMode] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [toasts, setToasts] = useState<Array<{ id: string; message: string; variant: 'success' | 'error' }>>([]);
@@ -122,7 +121,6 @@ export default function EditorClient() {
   const newsForm = useForm<NewsForm>({ resolver: zodResolver(newsSchema), defaultValues: { itemsJson: '' } });
 
   useEffect(() => {
-    if (!isEditMode) return;
     let cancelled = false;
     (async () => {
       try {
@@ -186,7 +184,7 @@ export default function EditorClient() {
     return () => {
       cancelled = true;
     };
-  }, [isEditMode]);
+  }, []);
 
   async function onSaveHours(values: HoursForm) {
     setStatus(null);
@@ -340,15 +338,6 @@ export default function EditorClient() {
   return (
     <div className={`mt-6 space-y-8${isSaving ? ' cursor-wait' : ''}`}>
       <div className="flex items-center gap-3">
-        <label className="inline-flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            className="h-4 w-4"
-            checked={isEditMode}
-            onChange={(e) => setIsEditMode(e.target.checked)}
-          />
-          <span>Režim úprav</span>
-        </label>
         {lastSavedAt ? <span className="text-sm text-gray-600">Naposledy uloženo: {lastSavedAt}</span> : null}
       </div>
 
@@ -356,8 +345,7 @@ export default function EditorClient() {
         <div className="rounded-md border border-border bg-surface p-3 text-sm">{status}</div>
       ) : null}
 
-      {isEditMode ? (
-        <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2">
           <form
             className="rounded-md border border-border bg-surface p-4 space-y-3"
             onSubmit={hoursForm.handleSubmit(onSaveHours)}
@@ -459,8 +447,7 @@ export default function EditorClient() {
             <textarea className="w-full border rounded p-2 min-h-[160px]" {...newsForm.register('itemsJson')} placeholder='Položky (JSON pole objektů s id,title,body,dateIso,isVisible)' />
             <button type="submit" disabled={isSaving} className="inline-flex items-center rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Uložit</button>
           </form>
-        </div>
-      ) : null}
+      </div>
 
       {/* Toasts */}
       {toasts.length ? (
