@@ -35,6 +35,13 @@ Compact presentation website for a local ski lift.
 - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
 - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (server‑only)
 
+### Email forwarding
+
+- Using ImprovMX for domain email forwarding.
+  - Configure MX records at your DNS to ImprovMX’s MX hosts.
+  - Create aliases in the ImprovMX dashboard to forward to target inboxes.
+  - The site uses Wufoo for contact submissions; no SMTP sending is configured.
+
 ### Docs
 - `_docs/project-overview.md`, `_docs/user-flow.md`
 - `_docs/tech-stack.md`, `_docs/project-rules.md`
