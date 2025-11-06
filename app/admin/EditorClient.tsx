@@ -135,56 +135,92 @@ export default function EditorClient() {
           fetchBlock('news'),
         ]);
         if (cancelled) return;
-        if (hours?.data?.text) hoursForm.reset({ text: String(hours.data.text) });
-        if (hero?.data) heroForm.reset({
-          tagline: String(hero.data.tagline || ''),
-          webcamUrl: String(hero.data.webcamUrl || ''),
-          backgroundImageUrl: String(hero.data.backgroundImageUrl || ''),
-          noticeBannerText: String(hero.data.noticeBanner?.text || ''),
-          noticeBannerVisible: Boolean(hero.data.noticeBanner?.isVisible || false),
-          ctaLabel: String(hero.data.cta?.label || ''),
-          ctaUrl: String(hero.data.cta?.url || ''),
+        const hoursData = hours?.data as { text?: string } | undefined;
+        if (hoursData?.text) hoursForm.reset({ text: String(hoursData.text) });
+
+        const heroData = hero?.data as {
+          tagline?: string;
+          webcamUrl?: string;
+          backgroundImageUrl?: string;
+          noticeBanner?: { text?: string; isVisible?: boolean };
+          cta?: { label?: string; url?: string };
+        } | undefined;
+        if (heroData) heroForm.reset({
+          tagline: String(heroData.tagline || ''),
+          webcamUrl: String(heroData.webcamUrl || ''),
+          backgroundImageUrl: String(heroData.backgroundImageUrl || ''),
+          noticeBannerText: String(heroData.noticeBanner?.text || ''),
+          noticeBannerVisible: Boolean(heroData.noticeBanner?.isVisible || false),
+          ctaLabel: String(heroData.cta?.label || ''),
+          ctaUrl: String(heroData.cta?.url || ''),
         });
-        if (directions?.data) directionsForm.reset({
-          car: String(directions.data.car || ''),
-          gps: String(directions.data.gps || ''),
-          mapyCzUrl: String(directions.data.mapyCzUrl || ''),
-          busesJson: JSON.stringify(directions.data.buses || [], null, 2),
+
+        const directionsData = directions?.data as {
+          car?: string;
+          gps?: string;
+          mapyCzUrl?: string;
+          buses?: Array<{ label: string; url: string }>;
+        } | undefined;
+        if (directionsData) directionsForm.reset({
+          car: String(directionsData.car || ''),
+          gps: String(directionsData.gps || ''),
+          mapyCzUrl: String(directionsData.mapyCzUrl || ''),
+          busesJson: JSON.stringify(directionsData.buses || [], null, 2),
         });
-        if (contacts?.data) contactsForm.reset({
-          managerName: String(contacts.data.manager?.name || ''),
-          managerPhone: String(contacts.data.manager?.phone || ''),
-          managerEmail: String(contacts.data.manager?.email || ''),
-          operatorName: String(contacts.data.operator?.name || ''),
-          operatorAddress: String(contacts.data.operator?.address || ''),
-          operatorIco: String(contacts.data.operator?.ico || ''),
-          operatorWeb: String(contacts.data.operator?.web || ''),
-          wufooUrl: String(contacts.data.wufooUrl || ''),
+
+        const contactsData = contacts?.data as {
+          manager?: { name?: string; phone?: string; email?: string };
+          operator?: { name?: string; address?: string; ico?: string; web?: string };
+          wufooUrl?: string;
+        } | undefined;
+        if (contactsData) contactsForm.reset({
+          managerName: String(contactsData.manager?.name || ''),
+          managerPhone: String(contactsData.manager?.phone || ''),
+          managerEmail: String(contactsData.manager?.email || ''),
+          operatorName: String(contactsData.operator?.name || ''),
+          operatorAddress: String(contactsData.operator?.address || ''),
+          operatorIco: String(contactsData.operator?.ico || ''),
+          operatorWeb: String(contactsData.operator?.web || ''),
+          wufooUrl: String(contactsData.wufooUrl || ''),
         });
-        if (params?.data) paramsForm.reset({
-          subtitle: String(params.data.subtitle || ''),
-          itemsJson: JSON.stringify(params.data.items || [], null, 2),
+
+        const paramsData = params?.data as { subtitle?: string; items?: Array<{ header: string; value: string; unit: string }> } | undefined;
+        if (paramsData) paramsForm.reset({
+          subtitle: String(paramsData.subtitle || ''),
+          itemsJson: JSON.stringify(paramsData.items || [], null, 2),
         });
-        if (school?.data) schoolForm.reset({
-          subtitle: String(school.data.subtitle || ''),
-          description: String(school.data.description || ''),
-          pricingIndividual: String(school.data.pricing?.individual || ''),
-          pricingGroup: String(school.data.pricing?.group || ''),
-          instructorName: String(school.data.instructor?.name || ''),
-          instructorPhone: String(school.data.instructor?.phone || ''),
-          instructorEmail: String(school.data.instructor?.email || ''),
-          licenseImageUrl: String(school.data.licenseImageUrl || ''),
+
+        const schoolData = school?.data as {
+          subtitle?: string;
+          description?: string;
+          pricing?: { individual?: string; group?: string };
+          instructor?: { name?: string; phone?: string; email?: string };
+          licenseImageUrl?: string;
+        } | undefined;
+        if (schoolData) schoolForm.reset({
+          subtitle: String(schoolData.subtitle || ''),
+          description: String(schoolData.description || ''),
+          pricingIndividual: String(schoolData.pricing?.individual || ''),
+          pricingGroup: String(schoolData.pricing?.group || ''),
+          instructorName: String(schoolData.instructor?.name || ''),
+          instructorPhone: String(schoolData.instructor?.phone || ''),
+          instructorEmail: String(schoolData.instructor?.email || ''),
+          licenseImageUrl: String(schoolData.licenseImageUrl || ''),
         });
-        if (pricing?.data) pricingForm.reset({ rowsJson: JSON.stringify(pricing.data.rows || [], null, 2) });
-        if (news?.data) newsForm.reset({ itemsJson: JSON.stringify(news.data.items || [], null, 2) });
-  } catch (e) {
+
+        const pricingData = pricing?.data as { rows?: Array<{ duration: string; adults: string; kids: string }> } | undefined;
+        if (pricingData) pricingForm.reset({ rowsJson: JSON.stringify(pricingData.rows || [], null, 2) });
+
+        const newsData = news?.data as { items?: Array<{ id: string; title: string; body: string; dateIso: string; isVisible?: boolean }> } | undefined;
+        if (newsData) newsForm.reset({ itemsJson: JSON.stringify(newsData.items || [], null, 2) });
+      } catch {
         setStatus('Nepodařilo se načíst obsah.');
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [hoursForm, heroForm, directionsForm, contactsForm, paramsForm, schoolForm, pricingForm, newsForm]);
 
   async function onSaveHours(values: HoursForm) {
     setStatus(null);
