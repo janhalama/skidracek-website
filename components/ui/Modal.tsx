@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 /*
   Modal renders children inside a centered overlay dialog.
   Closes on ESC, backdrop click, or close button.
 */
 export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; onClose: () => void; children: React.ReactNode; title?: string }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(function onMount() { setMounted(true); }, []);
   useEffect(function setupEscToClose() {
     if (!isOpen) return;
     function onKey(e: KeyboardEvent) {
@@ -17,7 +20,7 @@ export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; o
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-  return (
+  const modalUi = (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center">
       <div className="absolute inset-0 z-[10000] bg-black/40" onClick={onClose} />
       <div role="dialog" aria-modal="true" aria-label={title || "Dialog"} className="relative z-[10001] w-[92vw] max-w-[720px] rounded-sm bg-white shadow-xl border border-primary">
@@ -38,4 +41,6 @@ export function Modal({ isOpen, onClose, children, title }: { isOpen: boolean; o
       </div>
     </div>
   );
+  if (!mounted) return null;
+  return createPortal(modalUi, document.body);
 }
