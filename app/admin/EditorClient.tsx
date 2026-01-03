@@ -250,15 +250,30 @@ export default function EditorClient() {
     setStatus(null);
     try {
       setIsSaving(true);
-      const parsed = heroSchema.parse(values);
-      const payload = {
+      const parseResult = heroSchema.safeParse(values);
+      if (!parseResult.success) {
+        const errors = parseResult.error.issues.map((e) => e.message).join(', ');
+        throw new Error(`Validation failed: ${errors}`);
+      }
+      const parsed = parseResult.data;
+      const snowDepthValue = typeof parsed.snowDepthCm === 'number' && !Number.isNaN(parsed.snowDepthCm) ? Math.round(parsed.snowDepthCm) : undefined;
+      const payload: {
+        tagline: string;
+        webcamUrl?: string;
+        backgroundImageUrl?: string;
+        noticeBanner: { isVisible: boolean; text: string };
+        cta?: { label: string; url: string };
+        snowDepthCm?: number;
+      } = {
         tagline: parsed.tagline,
         webcamUrl: parsed.webcamUrl || undefined,
         backgroundImageUrl: parsed.backgroundImageUrl || undefined,
         noticeBanner: { isVisible: !!values.noticeBannerVisible, text: values.noticeBannerText || '' },
         cta: parsed.ctaLabel && parsed.ctaUrl ? { label: parsed.ctaLabel, url: parsed.ctaUrl } : undefined,
-        snowDepthCm: parsed.snowDepthCm,
       };
+      if (snowDepthValue !== undefined) {
+        payload.snowDepthCm = snowDepthValue;
+      }
       const saved = await saveBlock('hero', payload);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
       setStatus('Uloženo.');
