@@ -52,7 +52,7 @@ const heroSchema = z.object({
     return Number.isNaN(num) ? undefined : num;
   }),
 });
-type HeroForm = z.infer<typeof heroSchema>;
+type HeroForm = z.input<typeof heroSchema>;
 
 /* Directions */
 const directionsSchema = z.object({
@@ -250,13 +250,14 @@ export default function EditorClient() {
     setStatus(null);
     try {
       setIsSaving(true);
+      const parsed = heroSchema.parse(values);
       const payload = {
-        tagline: values.tagline,
-        webcamUrl: values.webcamUrl || undefined,
-        backgroundImageUrl: values.backgroundImageUrl || undefined,
+        tagline: parsed.tagline,
+        webcamUrl: parsed.webcamUrl || undefined,
+        backgroundImageUrl: parsed.backgroundImageUrl || undefined,
         noticeBanner: { isVisible: !!values.noticeBannerVisible, text: values.noticeBannerText || '' },
-        cta: values.ctaLabel && values.ctaUrl ? { label: values.ctaLabel, url: values.ctaUrl } : undefined,
-        snowDepthCm: values.snowDepthCm !== undefined && values.snowDepthCm !== null ? values.snowDepthCm : undefined,
+        cta: parsed.ctaLabel && parsed.ctaUrl ? { label: parsed.ctaLabel, url: parsed.ctaUrl } : undefined,
+        snowDepthCm: parsed.snowDepthCm,
       };
       const saved = await saveBlock('hero', payload);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
