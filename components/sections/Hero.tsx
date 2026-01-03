@@ -13,6 +13,7 @@ type HeroData = {
   backgroundImageUrl?: string;
   noticeBanner?: { isVisible: boolean; text: string };
   cta?: { label: string; url: string };
+  snowDepthCm?: number;
 };
 
 export default async function Hero() {
@@ -22,6 +23,7 @@ export default async function Hero() {
   ]);
   const data = (block?.data as HeroData) || null;
   const bgUrl = (data?.backgroundImageUrl && data.backgroundImageUrl.trim()) || '/images/original/children_and_ski.jpg';
+  const snowDepthCm = data?.snowDepthCm ?? weather?.snowDepthCm ?? null;
   return (
     <section id="hero" className="relative py-16 sm:py-20 scroll-mt-24">
       {bgUrl ? (
@@ -53,7 +55,7 @@ export default async function Hero() {
             </div>
             {/* Snow (top-right) */}
             <div className="absolute right-3 top-3 inline-flex items-center rounded-sm bg-white px-2 py-0.5 text-sm text-primary">
-              Sníh: {weather?.snowDepthCm !== null && weather?.snowDepthCm !== undefined ? Math.round(weather.snowDepthCm) + ' cm' : '— cm'}
+              Sníh: {snowDepthCm !== null && snowDepthCm !== undefined ? Math.round(snowDepthCm) + ' cm' : '— cm'}
             </div>
           </div>
           {/* Blue stripe (wider than white card), rendered above the card */}

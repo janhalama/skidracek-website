@@ -39,6 +39,7 @@ const heroSchema = z.object({
       url: z.string().url(),
     })
     .optional(),
+  snowDepthCm: z.number().int().min(0).optional(),
 });
 
 /*

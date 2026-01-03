@@ -32,10 +32,25 @@ export async function fetchNormalizedWeather(options?: { revalidateSeconds?: num
       next: options?.revalidateSeconds ? { revalidate: options.revalidateSeconds } : undefined,
     });
     if (!res.ok) throw new Error(`Weather fetch failed: ${res.status}`);
-    const json: { current?: { temperature_2m?: number; snow_depth?: number; time?: string } } = await res.json();
+    const json: { 
+      current?: { temperature_2m?: number; snow_depth?: number; time?: string };
+      current_units?: { snow_depth?: string };
+    } = await res.json();
     const current = json.current ?? {};
     const temperatureC = typeof current.temperature_2m === 'number' ? current.temperature_2m : null;
-    const snowDepthCm = typeof current.snow_depth === 'number' ? current.snow_depth : null;
+    
+    let snowDepthCm: number | null = null;
+    if (typeof current.snow_depth === 'number') {
+      const unit = json.current_units?.snow_depth;
+      if (unit === 'm') {
+        snowDepthCm = current.snow_depth * 100;
+      } else if (unit === 'cm') {
+        snowDepthCm = current.snow_depth;
+      } else {
+        snowDepthCm = current.snow_depth;
+      }
+    }
+    
     const lastUpdatedIso = typeof current.time === 'string' ? current.time : null;
     return { temperatureC, snowDepthCm, lastUpdatedIso };
   } catch {

@@ -46,6 +46,11 @@ const heroSchema = z.object({
   noticeBannerVisible: z.boolean().default(false),
   ctaLabel: z.string().optional(),
   ctaUrl: z.string().url().optional().or(z.literal('').transform(() => undefined)),
+  snowDepthCm: z.string().optional().transform((val) => {
+    if (!val || val === '') return undefined;
+    const num = Number.parseInt(val, 10);
+    return Number.isNaN(num) ? undefined : num;
+  }),
 });
 type HeroForm = z.infer<typeof heroSchema>;
 
@@ -112,7 +117,7 @@ export default function EditorClient() {
   }
 
   const hoursForm = useForm<HoursForm>({ resolver: zodResolver(hoursSchema), defaultValues: { text: '' } });
-  const heroForm = useForm<HeroForm>({ resolver: zodResolver(heroSchema), defaultValues: { tagline: '', webcamUrl: '', backgroundImageUrl: '', noticeBannerText: '', noticeBannerVisible: false, ctaLabel: '', ctaUrl: '' } });
+  const heroForm = useForm<HeroForm>({ resolver: zodResolver(heroSchema), defaultValues: { tagline: '', webcamUrl: '', backgroundImageUrl: '', noticeBannerText: '', noticeBannerVisible: false, ctaLabel: '', ctaUrl: '', snowDepthCm: '' } });
   const directionsForm = useForm<DirectionsForm>({ resolver: zodResolver(directionsSchema), defaultValues: { car: '', gps: '', mapyCzUrl: '', busesJson: '' } });
   const contactsForm = useForm<ContactsForm>({ resolver: zodResolver(contactsSchema), defaultValues: { managerName: '', managerPhone: '', managerEmail: '', operatorName: '', operatorAddress: '', operatorIco: '', operatorWeb: '', wufooUrl: '' } });
   const paramsForm = useForm<ParamsForm>({ resolver: zodResolver(paramsSchema), defaultValues: { subtitle: '', itemsJson: '' } });
@@ -144,6 +149,7 @@ export default function EditorClient() {
           backgroundImageUrl?: string;
           noticeBanner?: { text?: string; isVisible?: boolean };
           cta?: { label?: string; url?: string };
+          snowDepthCm?: number;
         } | undefined;
         if (heroData) heroForm.reset({
           tagline: String(heroData.tagline || ''),
@@ -153,6 +159,7 @@ export default function EditorClient() {
           noticeBannerVisible: Boolean(heroData.noticeBanner?.isVisible || false),
           ctaLabel: String(heroData.cta?.label || ''),
           ctaUrl: String(heroData.cta?.url || ''),
+          snowDepthCm: heroData.snowDepthCm !== undefined && heroData.snowDepthCm !== null ? String(heroData.snowDepthCm) : '',
         });
 
         const directionsData = directions?.data as {
@@ -249,6 +256,7 @@ export default function EditorClient() {
         backgroundImageUrl: values.backgroundImageUrl || undefined,
         noticeBanner: { isVisible: !!values.noticeBannerVisible, text: values.noticeBannerText || '' },
         cta: values.ctaLabel && values.ctaUrl ? { label: values.ctaLabel, url: values.ctaUrl } : undefined,
+        snowDepthCm: values.snowDepthCm !== undefined && values.snowDepthCm !== null ? values.snowDepthCm : undefined,
       };
       const saved = await saveBlock('hero', payload);
       setLastSavedAt(new Date(saved.updated_at).toLocaleString());
@@ -407,6 +415,17 @@ export default function EditorClient() {
             <div className="grid grid-cols-2 gap-2">
               <input type="text" className="w-full border rounded p-2" {...heroForm.register('ctaLabel')} placeholder="CTA text" />
               <input type="url" className="w-full border rounded p-2" {...heroForm.register('ctaUrl')} placeholder="CTA URL" />
+            </div>
+            <div>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                className="w-full border rounded p-2"
+                {...heroForm.register('snowDepthCm')}
+                placeholder="Výška sněhu (cm) - manuální přepsání"
+              />
+              <p className="text-xs text-gray-500 mt-1">Pokud je vyplněno, použije se místo hodnoty z API</p>
             </div>
             {heroForm.formState.errors.tagline ? (
               <p className="text-sm text-red-600">{heroForm.formState.errors.tagline.message}</p>
