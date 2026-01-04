@@ -46,9 +46,10 @@ const heroSchema = z.object({
   noticeBannerVisible: z.boolean().default(false),
   ctaLabel: z.string().optional(),
   ctaUrl: z.string().url().optional().or(z.literal('').transform(() => undefined)),
-  snowDepthCm: z.string().optional().transform((val) => {
-    if (!val || val === '') return undefined;
-    const num = Number.parseInt(val, 10);
+  snowDepthCm: z.union([z.string(), z.number()]).optional().transform((val) => {
+    if (val === undefined || val === null || val === '') return undefined;
+    const str = typeof val === 'number' ? String(val) : val;
+    const num = Number.parseInt(str, 10);
     return Number.isNaN(num) ? undefined : num;
   }),
 });
